@@ -1,6 +1,7 @@
 Project Overview :: 
 
 CampusSkill Hub is an exclusive, AI-powered skill-sharing platform designed specifically for Varendra University students. We bridge the gap between academic learning and practical skill development by creating a safe, verified, and anonymous ecosystem where students can teach, learn, and grow together.
+[ Demo Website Link ] : https://nahid-mahmud555.github.io/Campus-Circle/
 
     💡 Vision: To create Bangladesh's first university-specific skill-sharing economy powered by artificial intelligence.
 
