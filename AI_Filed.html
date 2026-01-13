@@ -3,504 +3,736 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Campus Video Feed</title>
+<title>Aegis-AI | Sovereign Intelligence Platform</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 * {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
-font-family: 'Segoe UI', system-ui, sans-serif;
 }
 body {
-background: #0a0a0f;
-color: #fff;
+font-family: 'Inter', sans-serif;
+background: #0d1b2a;
+color: #e0e1dd;
 min-height: 100vh;
+overflow-x: hidden;
+}
+/* Step 1: Welcome Page */
+.step-container {
+display: none;
+width: 100%;
+min-height: 100vh;
+padding: 2rem;
+}
+.step-container.active {
 display: flex;
 justify-content: center;
 align-items: center;
-padding: 20px;
 }
-/* Open Button */
-.open-video-btn {
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+/* Common Styles */
+.logo {
+text-align: center;
+margin-bottom: 2rem;
+}
+.logo-icon {
+width: 80px;
+height: 80px;
+background: linear-gradient(135deg, #2a5b8c 0%, #3a86ff 100%);
+border-radius: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 1.5rem;
+}
+.logo-icon i {
+font-size: 2.5rem;
+color: white;
+}
+.logo h1 {
+font-size: 2.5rem;
+font-weight: 800;
+background: linear-gradient(to right, #e0e1dd, #00b4d8);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+margin-bottom: 0.5rem;
+}
+.logo p {
+color: #778da9;
+font-size: 1rem;
+letter-spacing: 1px;
+}
+.tagline {
+background: rgba(0, 180, 216, 0.1);
+color: #00b4d8;
+padding: 10px 20px;
+border-radius: 10px;
+text-align: center;
+margin-bottom: 2rem;
+border: 1px solid rgba(0, 180, 216, 0.2);
+}
+.btn {
+padding: 14px 20px;
+border-radius: 10px;
+font-weight: 600;
+font-size: 1rem;
+cursor: pointer;
+transition: all 0.3s;
+border: none;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+width: 100%;
+margin-bottom: 1rem;
+}
+.btn-primary {
+background: linear-gradient(135deg, #2a5b8c 0%, #3a86ff 100%);
+color: white;
+}
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 20px rgba(42, 91, 140, 0.3);
+}
+.btn-secondary {
+background: rgba(255, 255, 255, 0.1);
+color: white;
+border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-secondary:hover {
+background: rgba(255, 255, 255, 0.2);
+}
+.form-group {
+margin-bottom: 1.5rem;
+}
+.form-group label {
+display: block;
+margin-bottom: 8px;
+font-weight: 500;
+color: white;
+font-size: 0.95rem;
+}
+.form-input {
+width: 100%;
+padding: 14px 16px;
+background: rgba(0, 0, 0, 0.3);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 10px;
+color: white;
+font-size: 1rem;
+transition: all 0.3s;
+}
+.form-input:focus {
+outline: none;
+border-color: #00b4d8;
+box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+}
+/* Step 1 Specific */
+.step1-container {
+max-width: 500px;
+width: 100%;
+}
+.login-box {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(10px);
+border-radius: 20px;
+padding: 2.5rem;
+border: 1px solid rgba(255, 255, 255, 0.1);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+.login-header {
+text-align: center;
+margin-bottom: 2rem;
+}
+.login-header h2 {
+font-size: 1.8rem;
+margin-bottom: 0.5rem;
+color: white;
+}
+.login-header p {
+color: #778da9;
+font-size: 0.95rem;
+}
+.code-display {
+background: rgba(0, 0, 0, 0.3);
+border-radius: 12px;
+padding: 1.5rem;
+margin-bottom: 1.5rem;
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.code-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 1rem;
+}
+.code-title {
+font-size: 0.9rem;
+color: #778da9;
+}
+.copy-btn {
+background: rgba(0, 180, 216, 0.2);
+color: #00b4d8;
+border: none;
+padding: 6px 12px;
+border-radius: 6px;
+cursor: pointer;
+font-size: 0.8rem;
+transition: all 0.3s;
+}
+.copy-btn:hover {
+background: rgba(0, 180, 216, 0.4);
+}
+.hex-code {
+font-size: 1.8rem;
+letter-spacing: 3px;
+text-align: center;
+color: #00b4d8;
+font-weight: 600;
+font-family: monospace;
+padding: 10px;
+border-radius: 8px;
+background: rgba(0, 0, 0, 0.2);
+}
+.info-box {
+background: rgba(0, 180, 216, 0.1);
+border-left: 4px solid #00b4d8;
+padding: 1rem;
+border-radius: 8px;
+margin-top: 2rem;
+font-size: 0.9rem;
+color: #e0e1dd;
+}
+/* Step 2 Specific */
+.step2-container {
+max-width: 1200px;
+width: 100%;
+}
+.step2-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 3rem;
+padding-bottom: 1.5rem;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.user-code {
+background: rgba(0, 180, 216, 0.1);
+color: #00b4d8;
+padding: 8px 16px;
+border-radius: 20px;
+font-size: 0.9rem;
+border: 1px solid rgba(0, 180, 216, 0.3);
+}
+.content-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+margin-bottom: 3rem;
+}
+@media (max-width: 900px) {
+.content-grid {
+grid-template-columns: 1fr;
+}
+}
+.concepts-section, .upload-section {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(10px);
+border-radius: 20px;
+padding: 2.5rem;
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.section-title {
+font-size: 1.8rem;
+margin-bottom: 2rem;
+color: white;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.section-title i {
+color: #00b4d8;
+}
+.concepts-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 1.5rem;
+}
+.concept-card {
+background: rgba(0, 0, 0, 0.3);
+border-radius: 12px;
+padding: 1.5rem;
+border-left: 4px solid #00b4d8;
+transition: all 0.3s;
+}
+.concept-card:hover {
+transform: translateX(5px);
+background: rgba(0, 0, 0, 0.4);
+}
+.concept-title {
+font-size: 1.2rem;
+margin-bottom: 0.8rem;
+color: white;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.concept-title i {
+color: #00b4d8;
+}
+.concept-desc {
+color: #778da9;
+font-size: 0.95rem;
+line-height: 1.5;
+}
+.upload-area {
+border: 3px dashed rgba(0, 180, 216, 0.3);
+border-radius: 15px;
+padding: 3rem 2rem;
+text-align: center;
+cursor: pointer;
+transition: all 0.3s;
+margin-bottom: 2rem;
+background: rgba(0, 180, 216, 0.05);
+}
+.upload-area:hover {
+border-color: rgba(0, 180, 216, 0.6);
+background: rgba(0, 180, 216, 0.1);
+}
+.upload-area i {
+font-size: 3rem;
+color: #00b4d8;
+margin-bottom: 1rem;
+}
+.upload-text {
+font-size: 1.2rem;
+font-weight: 600;
+margin-bottom: 0.5rem;
+color: white;
+}
+.upload-subtext {
+color: #778da9;
+font-size: 0.9rem;
+}
+.file-list {
+max-height: 200px;
+overflow-y: auto;
+margin-bottom: 2rem;
+}
+.file-item {
+background: rgba(0, 0, 0, 0.3);
+border-radius: 8px;
+padding: 12px;
+margin-bottom: 10px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.file-info {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.file-info i {
+color: #00b4d8;
+font-size: 1.2rem;
+}
+.file-name {
+font-size: 0.95rem;
+max-width: 300px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+.remove-file {
+color: #ff6b6b;
+cursor: pointer;
+padding: 5px;
+}
+.train-btn {
+width: 100%;
+padding: 16px;
+background: linear-gradient(135deg, #2a5b8c 0%, #3a86ff 100%);
 color: white;
 border: none;
-padding: 20px 40px;
-border-radius: 50px;
-font-size: 1.5rem;
-font-weight: bold;
+border-radius: 12px;
+font-size: 1.1rem;
+font-weight: 600;
 cursor: pointer;
-display: flex;
-align-items: center;
-gap: 15px;
-box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-transition: all 0.3s ease;
-animation: float 3s ease-in-out infinite;
-}
-@keyframes float {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(-10px); }
-}
-.open-video-btn:hover {
-transform: translateY(-5px);
-box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
-}
-/* Modal */
-.hidden {
-display: none !important;
-}
-.modal {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.95);
-backdrop-filter: blur(10px);
-z-index: 10000;
+transition: all 0.3s;
 display: flex;
 align-items: center;
 justify-content: center;
-padding: 20px;
-animation: fadeIn 0.3s ease forwards;
+gap: 10px;
+margin-bottom: 1.5rem;
 }
-@keyframes fadeIn {
-from { opacity: 0; }
-to { opacity: 1; }
+.train-btn:hover:not(:disabled) {
+transform: translateY(-3px);
+box-shadow: 0 10px 20px rgba(42, 91, 140, 0.3);
 }
-.modal-content {
-width: 100%;
-max-width: 1400px;
-height: 90vh;
+.train-btn:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+}
+.training-progress {
+background: rgba(0, 0, 0, 0.3);
+border-radius: 12px;
+padding: 1.5rem;
+border: 1px solid rgba(0, 180, 216, 0.3);
+display: none;
+margin-bottom: 1.5rem;
+}
+.progress-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 1rem;
+}
+.progress-title {
+font-weight: 600;
+color: #00b4d8;
+}
+.progress-percent {
+color: #00b4d8;
+font-weight: 600;
+}
+.progress-bar {
+height: 10px;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 5px;
 overflow: hidden;
-border-radius: 25px;
-background: #000;
-box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
-position: relative;
-animation: slideUp 0.5s ease;
+margin-bottom: 1rem;
+}
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, #00b4d8, #00ccbb);
+width: 0%;
+transition: width 0.5s;
+border-radius: 5px;
+}
+.progress-text {
+font-size: 0.9rem;
+color: #778da9;
+text-align: center;
+}
+.next-btn {
+width: 100%;
+padding: 16px;
+background: linear-gradient(135deg, #00b4d8 0%, #00ccbb 100%);
+color: white;
+border: none;
+border-radius: 12px;
+font-size: 1.1rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+margin-top: 2rem;
+display: none;
+}
+.next-btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 20px rgba(0, 180, 216, 0.3);
+}
+/* Step 3 Specific */
+.chat-container {
 display: flex;
 flex-direction: column;
+height: 100vh;
+width: 100%;
 }
-@keyframes slideUp {
-from { transform: translateY(50px); opacity: 0; }
-to { transform: translateY(0); opacity: 1; }
-}
-/* Header */
-.video-header {
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-padding: 20px 30px;
+.chat-header {
+background: rgba(13, 27, 42, 0.95);
+backdrop-filter: blur(10px);
+padding: 1rem 2rem;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 display: flex;
 justify-content: space-between;
 align-items: center;
 flex-shrink: 0;
 }
-.header-content h1 {
-font-size: 1.8rem;
+.header-left {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.chat-logo-icon {
+width: 45px;
+height: 45px;
+background: linear-gradient(135deg, #2a5b8c 0%, #3a86ff 100%);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.chat-logo-icon i {
+font-size: 1.5rem;
+color: white;
+}
+.chat-header-title h1 {
+font-size: 1.5rem;
+font-weight: 700;
+background: linear-gradient(to right, #e0e1dd, #00b4d8);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+.chat-header-title p {
+font-size: 0.85rem;
+color: #778da9;
+}
+.persona-badge {
+background: linear-gradient(135deg, #00b4d8 0%, #00ccbb 100%);
+color: white;
+padding: 6px 15px;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.chat-messages {
+flex: 1;
+overflow-y: auto;
+padding: 2rem;
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+.message {
+display: flex;
+gap: 15px;
+animation: fadeIn 0.3s ease;
+max-width: 85%;
+}
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.user-message {
+align-self: flex-end;
+flex-direction: row-reverse;
+}
+.ai-message {
+align-self: flex-start;
+}
+.message-avatar {
+width: 40px;
+height: 40px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.user-avatar {
+background: linear-gradient(135deg, #2a5b8c 0%, #3a86ff 100%);
+}
+.ai-avatar {
+background: linear-gradient(135deg, #00b4d8 0%, #00ccbb 100%);
+}
+.message-content {
+max-width: calc(100% - 55px);
+}
+.message-header {
 display: flex;
 align-items: center;
 gap: 10px;
 margin-bottom: 5px;
 }
-.header-content p {
-opacity: 0.9;
-font-size: 1rem;
-}
-.header-actions {
-display: flex;
-gap: 15px;
-align-items: center;
-}
-.upload-btn-header {
-background: rgba(255, 255, 255, 0.2);
-border: none;
+.message-sender {
+font-weight: 600;
+font-size: 0.95rem;
 color: white;
-padding: 10px 20px;
-border-radius: 50px;
-font-size: 1rem;
-cursor: pointer;
+}
+.message-time {
+font-size: 0.75rem;
+color: #778da9;
+}
+.message-text {
+padding: 1rem 1.5rem;
+border-radius: 18px;
+line-height: 1.6;
+font-size: 1.05rem;
+word-wrap: break-word;
+}
+.user-message .message-text {
+background: rgba(42, 91, 140, 0.3);
+border-bottom-right-radius: 4px;
+}
+.ai-message .message-text {
+background: rgba(255, 255, 255, 0.05);
+border-bottom-left-radius: 4px;
+}
+.message-text pre {
+background: rgba(0, 0, 0, 0.3);
+padding: 1rem;
+border-radius: 8px;
+overflow-x: auto;
+margin: 10px 0;
+font-family: monospace;
+font-size: 0.9rem;
+}
+.message-text code {
+background: rgba(0, 0, 0, 0.3);
+padding: 2px 6px;
+border-radius: 4px;
+font-family: monospace;
+font-size: 0.9rem;
+}
+.info-note {
+background: rgba(0, 180, 216, 0.1);
+border-left: 3px solid #00b4d8;
+padding: 10px 15px;
+margin-top: 10px;
+border-radius: 4px;
+font-size: 0.9rem;
+}
+.chat-input-area {
+padding: 1.5rem 2rem;
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+background: rgba(13, 27, 42, 0.8);
+flex-shrink: 0;
+}
+.input-container {
 display: flex;
-align-items: center;
-gap: 8px;
+gap: 12px;
+}
+.chat-input {
+flex: 1;
+padding: 16px 20px;
+background: rgba(0, 0, 0, 0.3);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+color: white;
+font-size: 1rem;
+resize: none;
+min-height: 60px;
+max-height: 120px;
+font-family: 'Inter', sans-serif;
 transition: all 0.3s;
 }
-.upload-btn-header:hover {
-background: rgba(255, 255, 255, 0.3);
+.chat-input:focus {
+outline: none;
+border-color: #00b4d8;
+box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+}
+.send-btn {
+background: linear-gradient(135deg, #2a5b8c 0%, #3a86ff 100%);
+color: white;
+border: none;
+border-radius: 16px;
+width: 60px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: all 0.3s;
+flex-shrink: 0;
+}
+.send-btn:hover {
+background: #1e4670;
 transform: translateY(-2px);
 }
-.close-btn {
-background: rgba(255, 255, 255, 0.2);
-border: none;
-color: white;
-width: 40px;
-height: 40px;
-border-radius: 50%;
-cursor: pointer;
-font-size: 1.2rem;
-transition: all 0.3s;
+.action-buttons {
 display: flex;
-align-items: center;
-justify-content: center;
-}
-.close-btn:hover {
-background: rgba(255, 255, 255, 0.3);
-transform: rotate(90deg);
-}
-/* Main Container */
-.main-container {
-display: flex;
-height: 100%;
-overflow: hidden;
-}
-/* Video Feed - Left Side */
-.video-feed-container {
-flex: 1;
-overflow-y: auto;
-padding: 25px;
-background: #0a0a0f;
-}
-/* Upload Section */
-.upload-section {
-background: rgba(255, 255, 255, 0.05);
-border-radius: 20px;
-padding: 25px;
-border: 1px solid rgba(102, 126, 234, 0.3);
-margin-bottom: 30px;
-display: none;
-}
-.upload-section.active {
-display: block;
-animation: expand 0.5s ease;
-}
-@keyframes expand {
-from { opacity: 0; max-height: 0; }
-to { opacity: 1; max-height: 1000px; }
-}
-.upload-header {
-display: flex;
-align-items: center;
-gap: 15px;
-margin-bottom: 20px;
-color: #667eea;
-font-size: 1.3rem;
-}
-.upload-form .form-group {
-margin-bottom: 20px;
-}
-.form-label {
-display: block;
-margin-bottom: 8px;
-font-weight: 600;
-color: #00fff7;
-font-size: 1rem;
-}
-.form-input {
-width: 100%;
-padding: 12px 15px;
-background: rgba(255, 255, 255, 0.07);
-border: 1px solid rgba(102, 126, 234, 0.3);
-border-radius: 10px;
-color: white;
-font-size: 1rem;
-}
-.form-textarea {
-min-height: 100px;
-resize: vertical;
-}
-.drop-zone {
-border: 2px dashed rgba(102, 126, 234, 0.5);
-border-radius: 15px;
-padding: 40px 20px;
-text-align: center;
-cursor: pointer;
-transition: all 0.3s;
-background: rgba(102, 126, 234, 0.05);
-}
-.drop-zone:hover {
-border-color: #667eea;
-background: rgba(102, 126, 234, 0.1);
-}
-.drop-zone i {
-font-size: 3rem;
-margin-bottom: 15px;
-color: #667eea;
-}
-.selected-file {
-margin-top: 15px;
-padding: 12px;
-background: rgba(102, 126, 234, 0.1);
-border-radius: 10px;
-border-left: 4px solid #667eea;
-display: none;
-}
-.form-actions {
-display: flex;
-gap: 15px;
-margin-top: 25px;
-}
-.upload-btn {
-flex: 1;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-color: white;
-border: none;
-padding: 15px;
-border-radius: 12px;
-font-size: 1.1rem;
-font-weight: bold;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
 gap: 10px;
-transition: all 0.3s;
+margin-top: 12px;
+justify-content: center;
+flex-wrap: wrap;
 }
-.upload-btn:hover {
-transform: translateY(-3px);
-box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-}
-.cancel-btn {
-background: rgba(255, 255, 255, 0.1);
-color: white;
-border: 1px solid rgba(255, 255, 255, 0.2);
-padding: 15px 25px;
-border-radius: 12px;
-font-size: 1rem;
-cursor: pointer;
-transition: all 0.3s;
-}
-.cancel-btn:hover {
-background: rgba(255, 255, 255, 0.15);
-}
-/* Video Grid */
-.video-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-gap: 20px;
-}
-.video-card {
+.action-btn {
 background: rgba(255, 255, 255, 0.05);
-border-radius: 15px;
-overflow: hidden;
-transition: all 0.3s;
-border: 1px solid transparent;
-cursor: pointer;
-}
-.video-card:hover {
-transform: translateY(-5px);
-border-color: rgba(102, 126, 234, 0.3);
-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-.video-thumbnail {
-position: relative;
-height: 180px;
-overflow: hidden;
-}
-.video-thumbnail img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 0.5s;
-}
-.video-card:hover .video-thumbnail img {
-transform: scale(1.05);
-}
-/* Play Button in Video Card */
-.play-btn-large {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 60px;
-height: 60px;
-background: rgba(255, 255, 255, 0.9);
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1.5rem;
-color: #667eea;
-cursor: pointer;
-opacity: 0;
-transition: opacity 0.3s;
-z-index: 2;
-}
-.video-card:hover .play-btn-large {
-opacity: 1;
-}
-.video-category {
-position: absolute;
-top: 10px;
-left: 10px;
-background: rgba(0, 0, 0, 0.8);
-color: white;
-padding: 5px 12px;
+color: #778da9;
+border: 1px solid rgba(255, 255, 255, 0.1);
 border-radius: 20px;
-font-size: 0.8rem;
-font-weight: 600;
-display: flex;
-align-items: center;
-gap: 5px;
-}
-.video-duration {
-position: absolute;
-bottom: 10px;
-right: 10px;
-background: rgba(0, 0, 0, 0.8);
-color: white;
-padding: 4px 10px;
-border-radius: 20px;
-font-size: 0.8rem;
-}
-.video-info {
-padding: 15px;
-}
-.video-title {
-font-size: 1.2rem;
-font-weight: 700;
-line-height: 1.3;
-margin-bottom: 8px;
-display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
-overflow: hidden;
-}
-.video-description {
-opacity: 0.9;
-line-height: 1.4;
-margin-bottom: 15px;
-font-size: 0.95rem;
-display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
-overflow: hidden;
-}
-.video-author {
-display: flex;
-align-items: center;
-gap: 10px;
-margin-bottom: 15px;
-}
-.author-avatar {
-width: 35px;
-height: 35px;
-border-radius: 50%;
-background: linear-gradient(135deg, #667eea, #764ba2);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1rem;
-}
-.author-info h4 {
-font-weight: 600;
-margin-bottom: 3px;
-font-size: 0.95rem;
-}
-.author-info p {
+padding: 8px 16px;
 font-size: 0.85rem;
-opacity: 0.7;
-}
-.video-stats {
-display: flex;
-justify-content: space-between;
-border-top: 1px solid rgba(255, 255, 255, 0.1);
-padding-top: 12px;
-}
-.stat-item {
+cursor: pointer;
+transition: all 0.3s;
 display: flex;
 align-items: center;
 gap: 6px;
-color: #a3b4ff;
+}
+.action-btn:hover {
+background: rgba(255, 255, 255, 0.1);
+color: #e0e1dd;
+}
+.typing-indicator {
+display: flex;
+align-items: center;
+gap: 6px;
+padding: 1rem;
+background: rgba(255, 255, 255, 0.05);
+border-radius: 18px;
+width: fit-content;
+align-self: flex-start;
+}
+.typing-dot {
+width: 8px;
+height: 8px;
+background: #00b4d8;
+border-radius: 50%;
+animation: typing 1.5s infinite ease-in-out;
+}
+.typing-dot:nth-child(1) { animation-delay: -0.3s; }
+.typing-dot:nth-child(2) { animation-delay: -0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0s; }
+@keyframes typing {
+0%, 60%, 100% { transform: translateY(0); }
+30% { transform: translateY(-10px); }
+}
+.welcome-message {
+text-align: center;
+max-width: 800px;
+margin: 2rem auto;
+padding: 2.5rem;
+background: rgba(255, 255, 255, 0.03);
+border-radius: 20px;
+border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.welcome-title {
+font-size: 2rem;
+margin-bottom: 1rem;
+background: linear-gradient(to right, #e0e1dd, #00b4d8);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+.welcome-subtitle {
+color: #778da9;
+font-size: 1.1rem;
+margin-bottom: 2rem;
+}
+/* Step Indicator */
+.step-indicator {
+text-align: center;
+margin-top: 2rem;
+color: #778da9;
 font-size: 0.9rem;
 }
-.stat-item i {
-color: #667eea;
-}
-/* Video Player Popup */
-.video-player-container {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.95);
-z-index: 10001;
-display: none;
-justify-content: center;
-align-items: center;
-animation: fadeIn 0.3s ease;
-padding: 20px;
-}
-.video-player-container.active {
-display: flex;
-}
-.video-player-wrapper {
-width: 90%;
-max-width: 1000px;
-max-height: 90vh;
-background: #000;
-border-radius: 20px;
-overflow: hidden;
-position: relative;
-animation: scaleUp 0.3s ease;
-display: flex;
-flex-direction: column;
-}
-.video-player-header {
-padding: 20px;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-shrink: 0;
-}
-.video-player-title {
-font-size: 1.5rem;
-font-weight: bold;
-}
-.video-player-close {
-background: rgba(255, 255, 255, 0.2);
-border: none;
-color: white;
-width: 40px;
-height: 40px;
+.step-indicator .step {
+display: inline-block;
+width: 10px;
+height: 10px;
+background: #778da9;
 border-radius: 50%;
-cursor: pointer;
-font-size: 1.2rem;
-display: flex;
-align-items: center;
-justify-content: center;
+margin: 0 5px;
 }
-.video-player-close:hover {
-background: rgba(255, 255, 255, 0.3);
-transform: rotate(90deg);
+.step-indicator .step.active {
+background: #00b4d8;
+transform: scale(1.2);
 }
-.video-player-content {
-height: 400px;
-background: #000;
-flex-shrink: 0;
-}
-.video-player-content video {
-width: 100%;
-height: 100%;
-object-fit: contain;
-}
-.video-player-info {
-padding: 20px;
-background: #0a0a0f;
-overflow-y: auto;
-max-height: 300px;
-flex: 1;
-}
-/* Scrollbar styling */
-.video-player-info::-webkit-scrollbar {
-width: 6px;
-}
-.video-player-info::-webkit-scrollbar-track {
-background: rgba(255, 255, 255, 0.05);
-}
-.video-player-info::-webkit-scrollbar-thumb {
-background: #667eea;
-border-radius: 10px;
+/* Hidden Elements */
+#fileInput {
+display: none;
 }
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -508,651 +740,927 @@ width: 8px;
 }
 ::-webkit-scrollbar-track {
 background: rgba(255, 255, 255, 0.05);
+border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-background: linear-gradient(180deg, #667eea, #764ba2);
+background: #2a5b8c;
 border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #1e4670;
 }
 /* Responsive */
 @media (max-width: 768px) {
-.modal-content {
-max-width: 95%;
-height: 95vh;
+.step-container {
+padding: 1rem;
 }
-.video-header {
+.chat-header {
+padding: 1rem;
 flex-direction: column;
 gap: 15px;
-text-align: center;
-padding: 15px;
+align-items: flex-start;
 }
-.header-actions {
-width: 100%;
-justify-content: center;
+.chat-messages {
+padding: 1rem;
 }
-.video-grid {
+.chat-input-area {
+padding: 1rem;
+}
+.message {
+max-width: 95%;
+}
+.content-grid {
 grid-template-columns: 1fr;
-}
-.video-player-wrapper {
-width: 95%;
-}
-.video-player-content {
-height: 300px;
 }
 }
 </style>
 </head>
 <body>
-<!-- Open Video Feed Button -->
-<button onclick="openVideoNewsfeed()" class="open-video-btn">
-<i class="fas fa-play-circle"></i>
-OPEN CAMPUS VIDEO FEED
+<!-- Step 1: Welcome & Login -->
+<div class="step-container active" id="step1">
+<div class="step1-container">
+<div class="logo">
+<div class="logo-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<h1>Aegis-AI</h1>
+<p>Sovereign Intelligence Platform</p>
+</div>
+<div class="tagline">
+Zero-Knowledge • Empty Vessel Architecture
+</div>
+<div class="login-box">
+<div class="login-header">
+<h2>Welcome to Aegis-AI</h2>
+<p>Access your sovereign knowledge vault</p>
+</div>
+<div class="code-display">
+<div class="code-header">
+<div class="code-title">Your Sovereign Identity Code</div>
+<button class="copy-btn" id="copyCodeBtn">
+<i class="fas fa-copy"></i> Copy
 </button>
-
-<!-- Main Video Feed Modal -->
-<div id="videoNewsfeedModal" class="modal hidden">
-<div class="modal-content">
-<!-- Header -->
-<div class="video-header">
-<div class="header-content">
-<h1>
-<i class="fas fa-play-circle"></i> Campus Video Feed
-</h1>
-<p>Real skills from real students • Tech Showcase Platform</p>
 </div>
-<div class="header-actions">
-<button onclick="toggleUploadSection()" class="upload-btn-header">
-<i class="fas fa-plus-circle"></i> Upload Video
-</button>
-<button onclick="closeVideoNewsfeed()" class="close-btn">
-<i class="fas fa-times"></i>
-</button>
+<div class="hex-code" id="hexCode">A3F8B2C9D1E5</div>
 </div>
-</div>
-
-<!-- Main Container -->
-<div class="main-container">
-<!-- Video Feed -->
-<div class="video-feed-container" id="videoFeedContainer">
-<!-- Upload Section -->
-<div id="videoUploadSection" class="upload-section">
-<div class="upload-header">
-<i class="fas fa-cloud-upload-alt"></i>
-<h3>Upload Your Skill Video</h3>
-</div>
-<form id="videoUploadForm" onsubmit="uploadVideo(event)">
+<form id="loginForm">
 <div class="form-group">
-<label class="form-label">Video Title *</label>
-<input type="text" id="videoTitle" class="form-input" placeholder="e.g., React Hooks Masterclass" required>
+<label for="accessCode"><i class="fas fa-key"></i> Enter Access Code</label>
+<input type="text" id="accessCode" class="form-input" placeholder="Enter your 12-digit hex code" required>
 </div>
-<div class="form-group">
-<label class="form-label">Description *</label>
-<textarea id="videoDescription" class="form-input form-textarea" placeholder="Describe your video content..." required></textarea>
-</div>
-<div class="form-group">
-<label class="form-label">Category *</label>
-<select id="videoCategory" class="form-input" required>
-<option value="">Select Technology</option>
-<option value="web-dev">Web Development</option>
-<option value="mobile-dev">Mobile Development</option>
-<option value="ai-ml">AI & Machine Learning</option>
-<option value="cybersecurity">Cybersecurity</option>
-<option value="blockchain">Blockchain</option>
-<option value="ui-ux">UI/UX Design</option>
-</select>
-</div>
-<div class="form-group">
-<label class="form-label">Video File *</label>
-<div id="videoDropZone" class="drop-zone" onclick="document.getElementById('videoFile').click()">
-<i class="fas fa-video"></i>
-<p>Click or drag video file here</p>
-<p style="font-size: 0.9rem; opacity: 0.7;">MP4, MOV up to 500MB</p>
-<input type="file" id="videoFile" accept="video/*" style="display: none;" onchange="handleFileSelect(this)">
-</div>
-<div id="selectedFile" class="selected-file"></div>
-</div>
-<div class="form-actions">
-<button type="submit" class="upload-btn">
-<i class="fas fa-upload"></i> UPLOAD VIDEO
+<button type="submit" class="btn btn-primary" id="loginBtn">
+<i class="fas fa-sign-in-alt"></i> Access Knowledge Vault
 </button>
-<button type="button" onclick="toggleUploadSection()" class="cancel-btn">
-Cancel
+<button type="button" class="btn btn-secondary" id="generateCodeBtn">
+<i class="fas fa-plus-circle"></i> Generate New Identity
 </button>
-</div>
 </form>
-</div>
-
-<!-- Video Grid -->
-<div class="video-grid" id="videoGrid">
-<!-- Videos will be loaded here -->
+<div class="info-box">
+<i class="fas fa-info-circle"></i> No email or phone needed. Your hex code is your only identity. Store it securely.
 </div>
 </div>
+<div class="step-indicator">
+Step 1 of 3
+<span class="step active"></span>
+<span class="step"></span>
+<span class="step"></span>
 </div>
 </div>
 </div>
-
-<!-- Video Player Popup -->
-<div id="videoPlayerPopup" class="video-player-container">
-<div class="video-player-wrapper">
-<div class="video-player-header">
-<div class="video-player-title" id="playerTitle">Video Player</div>
-<button onclick="closeVideoPlayer()" class="video-player-close">
-<i class="fas fa-times"></i>
+<!-- Step 2: Upload & Train -->
+<div class="step-container" id="step2">
+<div class="step2-container">
+<div class="step2-header">
+<div class="logo">
+<div class="logo-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div class="logo-text">
+<h1>Aegis-AI</h1>
+<p>Train Your Sovereign Intelligence</p>
+</div>
+</div>
+<div class="user-code" id="userCodeDisplay">
+<!-- Code will be inserted here -->
+</div>
+</div>
+<div class="content-grid">
+<div class="concepts-section">
+<h2 class="section-title">
+<i class="fas fa-lightbulb"></i> How Aegis-AI Works
+</h2>
+<div class="concepts-grid">
+<div class="concept-card">
+<h3 class="concept-title">
+<i class="fas fa-ban"></i> Zero-Knowledge Base
+</h3>
+<p class="concept-desc">
+I have no pre-existing knowledge. I only learn from what you upload. No internet access, no hallucinations.
+</p>
+</div>
+<div class="concept-card">
+<h3 class="concept-title">
+<i class="fas fa-user-tie"></i> Dynamic Persona
+</h3>
+<p class="concept-desc">
+I adapt to your content. Upload coding files → become Code Expert. Upload research → become Research Assistant.
+</p>
+</div>
+<div class="concept-card">
+<h3 class="concept-title">
+<i class="fas fa-shield-alt"></i> Data Sovereignty
+</h3>
+<p class="concept-desc">
+Your data stays yours. No training of public models. Your personal knowledge vault with military-grade encryption.
+</p>
+</div>
+<div class="concept-card">
+<h3 class="concept-title">
+<i class="fas fa-brain"></i> Empty Vessel
+</h3>
+<p class="concept-desc">
+I start as an empty vessel. You fill me with your knowledge. I only answer based on your uploaded documents.
+</p>
+</div>
+</div>
+</div>
+<div class="upload-section">
+<h2 class="section-title">
+<i class="fas fa-cloud-upload-alt"></i> Upload Your Knowledge
+</h2>
+<div class="upload-area" id="uploadTrigger">
+<i class="fas fa-file-upload"></i>
+<div class="upload-text">Click to Upload Files</div>
+<div class="upload-subtext">PDF, PPTX, DOCX, TXT, Images (Max 100MB each)</div>
+</div>
+<div class="file-list" id="fileList">
+<!-- Files will appear here -->
+</div>
+<div class="training-section">
+<button class="train-btn" id="trainBtn" disabled>
+<i class="fas fa-brain"></i> Train AI on Your Data
 </button>
+<div class="training-progress" id="trainingProgress">
+<div class="progress-header">
+<div class="progress-title">Training Aegis-AI</div>
+<div class="progress-percent" id="progressPercent">0%</div>
 </div>
-<div class="video-player-content">
-<video id="mainVideoPlayer" controls>
-<source src="" type="video/mp4">
-Your browser does not support the video tag.
-</video>
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
 </div>
-<div class="video-player-info">
-<h3 id="playerVideoTitle">Video Title</h3>
-<div class="video-stats">
-<span><i class="fas fa-eye"></i> <span id="playerViews">0</span> views</span>
-<span><i class="fas fa-thumbs-up"></i> <span id="playerLikes">0</span> likes</span>
-<span><i class="fas fa-clock"></i> <span id="playerDuration">0:00</span></span>
-</div>
-<p id="playerDescription" style="margin-top: 15px; opacity: 0.9; line-height: 1.6;"></p>
-
-<!-- Share Section - More content for scrolling -->
-<div style="margin-top: 25px;">
-<h4 style="margin-bottom: 15px; color: #667eea; font-size: 1.2rem;">
-<i class="fas fa-share-alt"></i> Share This Video
-</h4>
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px;">
-<button onclick="shareVideo('facebook')" style="background: #1877f2; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-<i class="fab fa-facebook"></i> Facebook
-</button>
-<button onclick="shareVideo('tiktok')" style="background: #000000; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-<i class="fab fa-tiktok"></i> TikTok
-</button>
-<button onclick="shareVideo('whatsapp')" style="background: #25d366; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-<i class="fab fa-whatsapp"></i> WhatsApp
-</button>
-<button onclick="shareVideo('twitter')" style="background: #1da1f2; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-<i class="fab fa-twitter"></i> Twitter
-</button>
-<button onclick="shareVideo('instagram')" style="background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-<i class="fab fa-instagram"></i> Instagram
-</button>
-<button onclick="shareVideo('linkedin')" style="background: #0a66c2; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-<i class="fab fa-linkedin"></i> LinkedIn
-</button>
-</div>
-
-<!-- Additional Info for scrolling -->
-<div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px;">
-<h5 style="color: #667eea; margin-bottom: 10px;">
-<i class="fas fa-info-circle"></i> Video Info
-</h5>
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 0.9rem;">
-<div>
-<span style="opacity: 0.7;">Category:</span>
-<span style="color: #667eea; font-weight: 600;" id="playerCategory">Web Development</span>
-</div>
-<div>
-<span style="opacity: 0.7;">Uploaded:</span>
-<span style="color: #4CAF50;" id="playerDate">2 hours ago</span>
-</div>
-<div>
-<span style="opacity: 0.7;">Author:</span>
-<span style="color: #ff8e53;" id="playerAuthor">Alex Johnson</span>
-</div>
-<div>
-<span style="opacity: 0.7;">Format:</span>
-<span>MP4 • HD</span>
+<div class="progress-text" id="progressText">Initializing training process...</div>
 </div>
 </div>
-</div>
-
-<!-- Comments Preview -->
-<div style="margin-top: 20px;">
-<h5 style="color: #667eea; margin-bottom: 10px;">
-<i class="fas fa-comment"></i> Top Comments
-</h5>
-<div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px;">
-<div style="display: flex; gap: 10px; margin-bottom: 10px;">
-<div style="width: 30px; height: 30px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-<i class="fas fa-user" style="font-size: 0.8rem;"></i>
-</div>
-<div>
-<div style="font-weight: 600;">Sarah Chen</div>
-<div style="opacity: 0.9; font-size: 0.9rem;">Amazing tutorial! Very helpful for beginners.</div>
-</div>
-</div>
-<div style="display: flex; gap: 10px;">
-<div style="width: 30px; height: 30px; background: #4CAF50; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-<i class="fas fa-user" style="font-size: 0.8rem;"></i>
-</div>
-<div>
-<div style="font-weight: 600;">Mike Ross</div>
-<div style="opacity: 0.9; font-size: 0.9rem;">Best explanation I've seen on this topic!</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- View More Button -->
-<button style="width: 100%; background: rgba(102, 126, 234, 0.2); color: #667eea; border: 1px solid rgba(102, 126, 234, 0.3); padding: 12px; border-radius: 10px; margin-top: 15px; cursor: pointer; font-weight: 600;">
-<i class="fas fa-arrow-down"></i> Scroll Down for More
+<button class="next-btn" id="nextBtn">
+<i class="fas fa-arrow-right"></i> Proceed to Chat Interface
 </button>
 </div>
 </div>
+<div class="step-indicator">
+Step 2 of 3
+<span class="step active"></span>
+<span class="step active"></span>
+<span class="step"></span>
 </div>
 </div>
-
+<input type="file" id="fileInput" multiple accept=".pdf,.pptx,.docx,.txt,.jpg,.png">
+</div>
+<!-- Step 3: Chat Interface -->
+<div class="step-container" id="step3">
+<div class="chat-container">
+<div class="chat-header">
+<div class="header-left">
+<div class="chat-logo-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div class="chat-header-title">
+<h1>Aegis-AI Chat</h1>
+<p>Sovereign Intelligence Assistant</p>
+</div>
+<div class="persona-badge" id="personaBadge">
+<i class="fas fa-user-tie"></i>
+<span id="personaText">Knowledge Assistant</span>
+</div>
+</div>
+</div>
+<div class="chat-messages" id="chatMessages">
+<div class="welcome-message">
+<h2 class="welcome-title">Your Aegis-AI is Ready!</h2>
+<p class="welcome-subtitle">Start chatting with your sovereign intelligence assistant</p>
+<div style="text-align: left; max-width: 600px; margin: 2rem auto;">
+<p style="color: #778da9; margin-bottom: 1rem;">
+<strong>How this works:</strong>
+</p>
+<ol style="color: #778da9; margin-left: 1.5rem;">
+<li>I only answer based on your uploaded knowledge</li>
+<li>I never access external information or the internet</li>
+<li>Your conversations remain 100% private</li>
+<li>Try asking questions about your uploaded content</li>
+</ol>
+</div>
+<div style="background: rgba(0, 180, 216, 0.1); padding: 1rem; border-radius: 10px; margin-top: 2rem;">
+<p style="color: #00b4d8; font-size: 0.9rem;">
+<i class="fas fa-lightbulb"></i>
+<strong>Tip:</strong> Try asking "What can you help me with?" or "Explain something from my documents"
+</p>
+</div>
+</div>
+<div class="message ai-message">
+<div class="message-avatar ai-avatar">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div class="message-content">
+<div class="message-header">
+<div class="message-sender">Aegis-AI</div>
+<div class="message-time">Just now</div>
+</div>
+<div class="message-text">
+Hello! I'm your sovereign intelligence assistant, trained on your uploaded documents.
+I operate with a <strong>zero-knowledge base</strong> - meaning I only reference your personal knowledge.
+<div class="info-note">
+<i class="fas fa-shield-alt"></i> I cannot hallucinate or access external information. All answers come from your uploaded content.
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="chat-input-area">
+<div class="input-container">
+<textarea class="chat-input" id="chatInput" placeholder="Ask me anything based on your uploaded knowledge..."></textarea>
+<button class="send-btn" id="sendBtn">
+<i class="fas fa-paper-plane"></i>
+</button>
+</div>
+<div class="action-buttons">
+<button class="action-btn" id="clearChatBtn">
+<i class="fas fa-trash"></i> Clear Chat
+</button>
+<button class="action-btn" id="suggestQuestionsBtn">
+<i class="fas fa-lightbulb"></i> Suggest Questions
+</button>
+<button class="action-btn" id="exportChatBtn">
+<i class="fas fa-download"></i> Export Chat
+</button>
+<button class="action-btn" id="newChatBtn">
+<i class="fas fa-plus"></i> New Chat
+</button>
+</div>
+</div>
+</div>
+</div>
 <script>
-// Sample video data (12 videos)
-const videos = [
-{
-id: 1,
-title: "React Hooks Complete Tutorial",
-description: "Master React Hooks with real-world examples. Learn useState, useEffect, useContext, and custom hooks in this comprehensive tutorial.",
-category: "web-dev",
-author: "Alex Johnson",
-views: 1250,
-likes: 89,
-duration: "12:45",
-thumbnail: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500&h=300&fit=crop",
-date: "2 hours ago"
-},
-{
-id: 2,
-title: "Flutter UI Design Guide",
-description: "Build beautiful mobile interfaces with Flutter. Complete guide to Material Design widgets and custom animations.",
-category: "mobile-dev",
-author: "Sarah Chen",
-views: 890,
-likes: 67,
-duration: "18:20",
-thumbnail: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&h=300&fit=crop",
-date: "5 hours ago"
-},
-{
-id: 3,
-title: "Python Machine Learning Basics",
-description: "Introduction to Machine Learning with scikit-learn. From data preprocessing to model training and evaluation.",
-category: "ai-ml",
-author: "Dr. Michael Park",
-views: 2100,
-likes: 145,
-duration: "25:10",
-thumbnail: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500&h=300&fit=crop",
-date: "1 day ago"
-},
-{
-id: 4,
-title: "Cybersecurity Best Practices",
-description: "Essential security measures every developer should know. Protect your applications from common vulnerabilities.",
-category: "cybersecurity",
-author: "Security Expert",
-views: 1560,
-likes: 92,
-duration: "15:30",
-thumbnail: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&h=300&fit=crop",
-date: "2 days ago"
-},
-{
-id: 5,
-title: "Smart Contract Development",
-description: "Build your first Ethereum smart contract using Solidity. Complete beginner's guide to blockchain development.",
-category: "blockchain",
-author: "Blockchain Dev",
-views: 1320,
-likes: 101,
-duration: "19:15",
-thumbnail: "https://images.unsplash.com/photo-1620336655055-bd87c5d1d73f?w=500&h=300&fit=crop",
-date: "4 days ago"
-},
-{
-id: 6,
-title: "UI/UX Design Principles",
-description: "Learn fundamental UI/UX design principles. Create user-friendly interfaces with Figma examples.",
-category: "ui-ux",
-author: "Design Guru",
-views: 980,
-likes: 78,
-duration: "22:45",
-thumbnail: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop",
-date: "3 days ago"
-},
-{
-id: 7,
-title: "JavaScript Async/Await",
-description: "Master asynchronous JavaScript with async/await. Practical examples for modern web development.",
-category: "web-dev",
-author: "JS Master",
-views: 1750,
-likes: 120,
-duration: "14:20",
-thumbnail: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=500&h=300&fit=crop",
-date: "6 hours ago"
-},
-{
-id: 8,
-title: "Kotlin for Android",
-description: "Learn Kotlin programming for Android development. Modern syntax and best practices.",
-category: "mobile-dev",
-author: "Android Expert",
-views: 1100,
-likes: 85,
-duration: "20:30",
-thumbnail: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop",
-date: "1 day ago"
-},
-{
-id: 9,
-title: "Data Visualization with D3.js",
-description: "Create interactive data visualizations using D3.js. From basic charts to complex dashboards.",
-category: "web-dev",
-author: "Data Viz Pro",
-views: 920,
-likes: 68,
-duration: "28:15",
-thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
-date: "2 days ago"
-},
-{
-id: 10,
-title: "Docker Containerization",
-description: "Learn Docker from scratch. Containerize your applications for efficient deployment.",
-category: "web-dev",
-author: "DevOps Engineer",
-views: 1450,
-likes: 95,
-duration: "23:40",
-thumbnail: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=500&h=300&fit=crop",
-date: "3 days ago"
-},
-{
-id: 11,
-title: "SwiftUI iOS Development",
-description: "Build modern iOS apps with SwiftUI. Declarative UI framework with live previews.",
-category: "mobile-dev",
-author: "iOS Developer",
-views: 1050,
-likes: 82,
-duration: "17:55",
-thumbnail: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop",
-date: "2 days ago"
-},
-{
-id: 12,
-title: "Node.js REST API",
-description: "Build scalable REST APIs with Node.js and Express. Authentication, validation, and deployment.",
-category: "web-dev",
-author: "Backend Master",
-views: 1900,
-likes: 110,
-duration: "26:30",
-thumbnail: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=500&h=300&fit=crop",
-date: "1 day ago"
-}
-];
+// App State
+let currentStep = 1;
+let currentHexCode = 'A3F8B2C9D1E5';
+let uploadedFiles = [];
+let isTraining = false;
+let currentTopic = "general";
+let chatHistory = [];
 
-const categories = {
-'web-dev': { name: 'Web Dev', color: '#667eea', icon: 'fa-code' },
-'mobile-dev': { name: 'Mobile', color: '#4CAF50', icon: 'fa-mobile-alt' },
-'ai-ml': { name: 'AI/ML', color: '#FF9800', icon: 'fa-brain' },
-'cybersecurity': { name: 'Security', color: '#f44336', icon: 'fa-shield-alt' },
-'blockchain': { name: 'Blockchain', color: '#9C27B0', icon: 'fa-link' },
-'ui-ux': { name: 'UI/UX', color: '#FF4081', icon: 'fa-paint-brush' }
+// AI Knowledge Base
+const knowledgeBase = {
+programming: {
+persona: "Code Expert",
+icon: "fa-code",
+responses: [
+`Based on your uploaded Python files, here's how functions work:
+<pre>
+# Function definition
+def greet(name):
+    """Greet a person by name"""
+    return f"Hello, {name}!"
+# Function call
+message = greet("Alice")
+print(message) # Output: Hello, Alice!
+# Function with default parameter
+def power(base, exponent=2):
+    return base ** exponent
+print(power(3))    # 9 (3^2)
+print(power(3, 3)) # 27 (3^3)
+</pre>
+<strong>Key concepts from your notes:</strong>
+1. Functions help organize code into reusable blocks
+2. Parameters are inputs, return values are outputs
+3. Docstrings document what functions do
+4. Default parameters make functions flexible
+<div class="info-note">
+<i class="fas fa-code"></i> Examples extracted from your programming exercises.
+</div>`,
+`From your JavaScript materials, here's event handling:
+<pre>
+// Get DOM element
+const button = document.getElementById('submitBtn');
+// Add event listener
+button.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent form submission
+    console.log('Button clicked!');
+    // Get form data
+    const form = document.getElementById('myForm');
+    const formData = new FormData(form);
+    // Process data
+    for (let [key, value] of formData.entries()) {
+        console.log(\`\${key}: \${value}\`);
+    }
+});
+// Arrow function alternative
+button.addEventListener('click', (event) => {
+    console.log('Arrow function handler');
+});
+</pre>
+<strong>Event types from your notes:</strong>
+- click: Mouse click
+- submit: Form submission
+- keydown: Key press
+- change: Input value change
+- load: Page/asset loaded
+<div class="info-note">
+<i class="fas fa-file-code"></i> Event handling patterns from your web development files.
+</div>`,
+`Your OOP (Object-Oriented Programming) notes explain:
+<strong>Four Pillars of OOP:</strong>
+1. <strong>Encapsulation:</strong> Bundle data and methods, hide implementation
+2. <strong>Inheritance:</strong> Create new classes from existing ones
+3. <strong>Polymorphism:</strong> Same interface, different implementation
+4. <strong>Abstraction:</strong> Hide complex reality, expose essentials
+<strong>Python OOP Example:</strong>
+<pre>
+class Vehicle:
+    def __init__(self, brand, model, year):
+        self.brand = brand
+        self.model = model
+        self.year = year
+        self.mileage = 0
+    def drive(self, miles):
+        self.mileage += miles
+        print(f"Driven {miles} miles. Total: {self.mileage}")
+    def get_info(self):
+        return f"{self.year} {self.brand} {self.model}"
+class Car(Vehicle):
+    def __init__(self, brand, model, year, doors):
+        super().__init__(brand, model, year)
+        self.doors = doors
+    def honk(self):
+        print("Beep beep!")
+# Usage
+my_car = Car("Toyota", "Camry", 2022, 4)
+print(my_car.get_info()) # 2022 Toyota Camry
+my_car.drive(150)         # Driven 150 miles. Total: 150
+my_car.honk()             # Beep beep!
+</pre>`
+],
+questions: [
+"What is a function in programming?",
+"Explain object-oriented programming",
+"How do I handle errors in code?",
+"What are data structures?",
+"Explain the difference between == and === in JavaScript"
+]
+},
+machine_learning: {
+persona: "ML Expert",
+icon: "fa-robot",
+responses: [
+`From your ML notes, supervised vs unsupervised learning:
+<strong>Supervised Learning:</strong>
+- Needs labeled data (input-output pairs)
+- Examples: Classification, Regression
+- Algorithms: Linear Regression, Decision Trees, SVM, Neural Networks
+- Use when: You have labeled data and know what to predict
+<strong>Unsupervised Learning:</strong>
+- Works with unlabeled data
+- Examples: Clustering, Dimensionality Reduction
+- Algorithms: K-Means, PCA, DBSCAN, Autoencoders
+- Use when: You want to find patterns in data
+<strong>Key Differences:</strong>
+- Supervised: Predict known outputs
+- Unsupervised: Discover unknown patterns
+- Semi-supervised: Mix of both approaches
+<div class="info-note">
+<i class="fas fa-chart-line"></i> This explanation comes from your machine learning lecture notes.
+</div>`,
+`Your neural network materials explain:
+<strong>Neural Network Architecture:</strong>
+1. <strong>Input Layer:</strong> Receives features (e.g., 784 neurons for MNIST)
+2. <strong>Hidden Layers:</strong> Process information (ReLU, Sigmoid, Tanh activations)
+3. <strong>Output Layer:</strong> Produces predictions (Softmax for classification)
+<strong>Training Process:</strong>
+- Forward Propagation: Calculate predictions
+- Loss Calculation: Compare with actual values (Cross-entropy, MSE)
+- Backpropagation: Update weights using gradients
+- Optimization: Minimize loss (Adam, SGD, RMSprop)
+<strong>Example from your TensorFlow notes:</strong>
+<pre>
+import tensorflow as tf
+from tensorflow.keras import layers, models
+model = models.Sequential([
+    layers.Dense(128, activation='relu', input_shape=(784,)),
+    layers.Dropout(0.2),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(10, activation='softmax')
+])
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=10, validation_split=0.2)
+</pre>`
+],
+questions: [
+"What is machine learning?",
+"Explain neural networks",
+"What is overfitting and how to prevent it?",
+"How does gradient descent work?",
+"What are activation functions in neural networks?"
+]
+},
+general: {
+persona: "Knowledge Assistant",
+icon: "fa-user-tie",
+responses: [
+`I'm your Aegis-AI assistant, trained on your uploaded documents. I operate with a <strong>zero-knowledge base</strong>.
+<strong>What I can do:</strong>
+1. Answer questions from your uploaded files
+2. Explain concepts based on your materials
+3. Provide code analysis from your programming files
+4. Help with academic writing from your resources
+5. Summarize key points from your documents
+<strong>What I cannot do:</strong>
+1. Access the internet or external databases
+2. Hallucinate or make up information
+3. Reference knowledge outside your uploads
+4. Provide real-time information or news
+<strong>My Architecture:</strong>
+- Empty Vessel: Start with no knowledge
+- Zero-Knowledge Filtering: No external data access
+- Data Sovereignty: Your data remains yours
+- Dynamic Persona: Adapt to your content type
+<div class="info-note">
+<i class="fas fa-shield-alt"></i> All responses are generated solely from your uploaded knowledge base.
+</div>`,
+`Welcome to Aegis-AI! Based on your uploaded files, I've detected multiple knowledge domains.
+<strong>Try asking me:</strong>
+- "Explain Python functions from my notes"
+- "What is machine learning based on my documents?"
+- "Show me a code example from my files"
+- "Help me understand research methodologies"
+- "Summarize key concepts from my uploaded materials"
+<strong>Sample questions you could ask:</strong>
+1. "What programming concepts are in my files?"
+2. "Explain neural networks from my ML notes"
+3. "Show me how to handle errors in Python"
+4. "What are the main research methods?"
+5. "How do I write better code based on my materials?"
+<div class="info-note">
+<i class="fas fa-lightbulb"></i> I adapt to your conversation. The more specific your questions, the better I can help!
+</div>`
+],
+questions: [
+"What can you help me with?",
+"How does Aegis-AI work?",
+"What topics are in my documents?",
+"Is my data secure with Aegis-AI?",
+"Can you summarize my uploaded content?"
+]
+}
 };
+
+// Initialize App
+document.addEventListener('DOMContentLoaded', function() {
+// Step 1: Login Page
+document.getElementById('copyCodeBtn').addEventListener('click', function() {
+navigator.clipboard.writeText(currentHexCode);
+const originalText = this.innerHTML;
+this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+this.style.background = 'rgba(0, 180, 216, 0.4)';
+setTimeout(() => {
+this.innerHTML = originalText;
+this.style.background = '';
+}, 2000);
+});
+
+document.getElementById('generateCodeBtn').addEventListener('click', function() {
+const chars = '0123456789ABCDEF';
+let result = '';
+for (let i = 0; i < 12; i++) {
+result += chars.charAt(Math.floor(Math.random() * chars.length));
+}
+currentHexCode = result;
+document.getElementById('hexCode').textContent = currentHexCode;
+
+const infoBox = document.querySelector('.info-box');
+infoBox.innerHTML = `<i class="fas fa-check"></i> New identity generated: <strong>${currentHexCode}</strong>. Save this code securely.`;
+infoBox.style.background = 'rgba(0, 180, 216, 0.2)';
+
+setTimeout(() => {
+infoBox.innerHTML = '<i class="fas fa-info-circle"></i> No email or phone needed. Your hex code is your only identity. Store it securely.';
+infoBox.style.background = '';
+}, 5000);
+});
+
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+e.preventDefault();
+
+const accessCode = document.getElementById('accessCode').value.trim();
+const loginBtn = document.getElementById('loginBtn');
+
+if (accessCode === currentHexCode || accessCode === 'A3F8B2C9D1E5') {
+loginBtn.innerHTML = '<i class="fas fa-check"></i> Access Granted';
+loginBtn.style.background = 'linear-gradient(135deg, #00b4d8 0%, #00ccbb 100%)';
+
+setTimeout(() => {
+goToStep(2);
+}, 1500);
+} else {
+loginBtn.innerHTML = '<i class="fas fa-times"></i> Invalid Code';
+loginBtn.style.background = 'rgba(220, 53, 69, 0.8)';
+
+setTimeout(() => {
+loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Access Knowledge Vault';
+loginBtn.style.background = '';
+}, 2000);
+}
+});
+
+// Step 2: Upload & Train
+document.getElementById('uploadTrigger').addEventListener('click', function() {
+document.getElementById('fileInput').click();
+});
+
+document.getElementById('fileInput').addEventListener('change', function(e) {
+const files = Array.from(e.target.files);
+files.forEach(file => {
+uploadedFiles.push({
+name: file.name,
+size: file.size,
+type: file.type,
+id: Date.now() + Math.random()
+});
+});
+
+updateFileList();
+updateTrainButton();
+});
+
+document.getElementById('trainBtn').addEventListener('click', function() {
+if (isTraining || uploadedFiles.length === 0) return;
+startTraining();
+});
+
+document.getElementById('nextBtn').addEventListener('click', function() {
+goToStep(3);
+});
+
+// Step 3: Chat Interface
+document.getElementById('sendBtn').addEventListener('click', sendMessage);
+document.getElementById('chatInput').addEventListener('keypress', function(e) {
+if (e.key === 'Enter' && !e.shiftKey) {
+e.preventDefault();
+sendMessage();
+}
+});
+
+document.getElementById('clearChatBtn').addEventListener('click', function() {
+if (confirm("Clear chat history? (Welcome messages will remain)")) {
+clearChat();
+}
+});
+
+document.getElementById('suggestQuestionsBtn').addEventListener('click', suggestQuestions);
+document.getElementById('exportChatBtn').addEventListener('click', exportChat);
+document.getElementById('newChatBtn').addEventListener('click', function() {
+if (confirm("Start new chat session? This will reset your current conversation.")) {
+goToStep(1);
+}
+});
 
 // Initialize
-document.addEventListener('DOMContentLoaded', function() {
-loadVideos();
-// Setup drag and drop
-const dropZone = document.getElementById('videoDropZone');
-dropZone.addEventListener('dragover', handleDragOver);
-dropZone.addEventListener('drop', handleDrop);
+showStep(1);
 });
 
-// Modal functions
-function openVideoNewsfeed() {
-document.getElementById('videoNewsfeedModal').classList.remove('hidden');
-}
+// Step Navigation
+function showStep(step) {
+document.querySelectorAll('.step-container').forEach(container => {
+container.classList.remove('active');
+});
+document.getElementById(`step${step}`).classList.add('active');
+currentStep = step;
 
-function closeVideoNewsfeed() {
-document.getElementById('videoNewsfeedModal').classList.add('hidden');
-}
-
-function toggleUploadSection() {
-const uploadSection = document.getElementById('videoUploadSection');
-uploadSection.classList.toggle('active');
-}
-
-function cancelUpload() {
-toggleUploadSection();
-document.getElementById('videoUploadForm').reset();
-document.getElementById('selectedFile').style.display = 'none';
-document.getElementById('selectedFile').innerHTML = '';
-}
-
-// File handling
-function handleDragOver(e) {
-e.preventDefault();
-e.stopPropagation();
-e.dataTransfer.dropEffect = 'copy';
-}
-
-function handleDrop(e) {
-e.preventDefault();
-e.stopPropagation();
-const files = e.dataTransfer.files;
-if (files.length > 0) {
-handleFileSelect(files[0]);
+if (step === 2) {
+document.getElementById('userCodeDisplay').textContent = `Code: ${currentHexCode}`;
 }
 }
 
-function handleFileSelect(input) {
-const file = input.files ? input.files[0] : input;
-const selectedFile = document.getElementById('selectedFile');
-if (file) {
-const fileSize = (file.size / (1024 * 1024)).toFixed(2);
-selectedFile.innerHTML = `
-<div style="display: flex; align-items: center; gap: 15px;">
-<i class="fas fa-video" style="color: #667eea; font-size: 1.5rem;"></i>
-<div style="flex: 1;">
-<div style="font-weight: 600;">${file.name}</div>
-<div style="font-size: 0.9rem; opacity: 0.8;">${fileSize} MB • ${file.type}</div>
+function goToStep(step) {
+showStep(step);
+
+if (step === 3) {
+// Initialize chat interface
+const chatMessages = document.getElementById('chatMessages');
+chatMessages.scrollTop = chatMessages.scrollHeight;
+
+// Set demo placeholder
+const demoQuestions = [
+"What is Python?",
+"Explain machine learning",
+"How do I write a function?",
+"What is object-oriented programming?",
+"Can you show me a code example?"
+];
+const randomQuestion = demoQuestions[Math.floor(Math.random() * demoQuestions.length)];
+document.getElementById('chatInput').placeholder = `Try asking: "${randomQuestion}"`;
+}
+}
+
+// Step 2 Functions
+function updateFileList() {
+const fileList = document.getElementById('fileList');
+fileList.innerHTML = '';
+
+if (uploadedFiles.length === 0) {
+fileList.innerHTML = '<div style="text-align: center; color: #778da9; padding: 20px;">No files uploaded yet</div>';
+return;
+}
+
+uploadedFiles.forEach((file, index) => {
+const fileItem = document.createElement('div');
+fileItem.className = 'file-item';
+fileItem.innerHTML = `
+<div class="file-info">
+<i class="fas ${getFileIcon(file.name)}"></i>
+<div class="file-name">${file.name}</div>
 </div>
-<button onclick="clearFileSelection()" style="background: none; border: none; color: #ff4655; cursor: pointer;">
+<div class="remove-file" onclick="removeFile(${index})">
 <i class="fas fa-times"></i>
-</button>
 </div>
 `;
-selectedFile.style.display = 'block';
-}
-}
-
-function clearFileSelection() {
-document.getElementById('videoFile').value = '';
-document.getElementById('selectedFile').style.display = 'none';
-document.getElementById('selectedFile').innerHTML = '';
+fileList.appendChild(fileItem);
+});
 }
 
-// Video upload
-function uploadVideo(event) {
-event.preventDefault();
-const title = document.getElementById('videoTitle').value;
-const category = document.getElementById('videoCategory').value;
-if (!title || !category) {
-alert('Please fill all required fields!');
-return;
-}
-if (!document.getElementById('videoFile').value) {
-alert('Please select a video file!');
-return;
+function removeFile(index) {
+uploadedFiles.splice(index, 1);
+updateFileList();
+updateTrainButton();
 }
 
-// Add new video to feed
-const newVideo = {
-id: videos.length + 1,
-title: title,
-description: document.getElementById('videoDescription').value,
-category: category,
-author: "You",
-views: 0,
-likes: 0,
-duration: "15:30",
-thumbnail: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500&h=300&fit=crop",
-date: "Just now"
-};
-
-videos.unshift(newVideo);
-alert(`Video "${title}" uploaded successfully!`);
-// Reset and update
-cancelUpload();
-loadVideos();
+function getFileIcon(filename) {
+if (filename.includes('.pdf')) return 'fa-file-pdf';
+if (filename.includes('.pptx')) return 'fa-file-powerpoint';
+if (filename.includes('.docx')) return 'fa-file-word';
+if (filename.includes('.txt')) return 'fa-file-alt';
+if (filename.includes('.jpg') || filename.includes('.png')) return 'fa-file-image';
+return 'fa-file';
 }
 
-// Load videos to grid
-function loadVideos() {
-const videoGrid = document.getElementById('videoGrid');
-videoGrid.innerHTML = '';
+function updateTrainButton() {
+const trainBtn = document.getElementById('trainBtn');
+trainBtn.disabled = uploadedFiles.length === 0;
+}
 
-videos.forEach(video => {
-const category = categories[video.category] || { name: 'Tech', color: '#667eea', icon: 'fa-code' };
-const card = document.createElement('div');
-card.className = 'video-card';
-card.onclick = () => playVideo(video.id);
-card.innerHTML = `
-<div class="video-thumbnail">
-<img src="${video.thumbnail}" alt="${video.title}">
-<div class="play-btn-large">
-<i class="fas fa-play"></i>
-</div>
-<div class="video-category" style="background: ${category.color}">
-<i class="fas ${category.icon}"></i> ${category.name}
-</div>
-<div class="video-duration">${video.duration}</div>
-</div>
-<div class="video-info">
-<h3 class="video-title">${video.title}</h3>
-<p class="video-description">${video.description}</p>
-<div class="video-author">
-<div class="author-avatar">
+function startTraining() {
+isTraining = true;
+const progress = document.getElementById('trainingProgress');
+const progressFill = document.getElementById('progressFill');
+const progressPercent = document.getElementById('progressPercent');
+const progressText = document.getElementById('progressText');
+const trainBtn = document.getElementById('trainBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+progress.style.display = 'block';
+trainBtn.disabled = true;
+trainBtn.innerHTML = '<i class="fas fa-cog fa-spin"></i> Training...';
+
+const steps = [
+"Reading uploaded files...",
+"Extracting text content...",
+"Processing document structure...",
+"Identifying key concepts...",
+"Creating semantic embeddings...",
+"Building knowledge graph...",
+"Optimizing retrieval system...",
+"Configuring AI persona...",
+"Finalizing training..."
+];
+
+let progressValue = 0;
+const interval = setInterval(() => {
+progressValue += Math.random() * 10 + 5;
+if (progressValue > 100) progressValue = 100;
+
+progressFill.style.width = `${progressValue}%`;
+progressPercent.textContent = `${Math.round(progressValue)}%`;
+
+const stepIndex = Math.min(
+Math.floor(progressValue / (100 / steps.length)),
+steps.length - 1
+);
+progressText.textContent = steps[stepIndex];
+
+if (progressValue >= 100) {
+clearInterval(interval);
+
+setTimeout(() => {
+progressText.textContent = "Training complete! AI is ready.";
+trainBtn.innerHTML = '<i class="fas fa-check"></i> Training Complete';
+nextBtn.style.display = 'flex';
+isTraining = false;
+}, 1000);
+}
+}, 400);
+}
+
+// Step 3 Functions
+function sendMessage() {
+const input = document.getElementById('chatInput');
+const message = input.value.trim();
+
+if (!message) return;
+
+addUserMessage(message);
+input.value = '';
+
+detectTopic(message);
+
+showTypingIndicator();
+
+setTimeout(() => {
+removeTypingIndicator();
+const aiResponse = generateAIResponse(message);
+addAIMessage(aiResponse);
+
+chatHistory.push({
+user: message,
+ai: aiResponse,
+time: new Date().toLocaleTimeString()
+});
+}, 800 + Math.random() * 1200);
+}
+
+function addUserMessage(text) {
+const chatMessages = document.getElementById('chatMessages');
+const messageDiv = document.createElement('div');
+messageDiv.className = 'message user-message';
+
+const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+messageDiv.innerHTML = `
+<div class="message-avatar user-avatar">
 <i class="fas fa-user"></i>
 </div>
-<div class="author-info">
-<h4>${video.author}</h4>
-<p>${video.date}</p>
+<div class="message-content">
+<div class="message-header">
+<div class="message-sender">You</div>
+<div class="message-time">${time}</div>
 </div>
-</div>
-<div class="video-stats">
-<div class="stat-item">
-<i class="fas fa-eye"></i>
-<span>${video.views.toLocaleString()}</span>
-</div>
-<div class="stat-item">
-<i class="fas fa-thumbs-up"></i>
-<span>${video.likes}</span>
-</div>
-</div>
+<div class="message-text">${text}</div>
 </div>
 `;
-videoGrid.appendChild(card);
+
+chatMessages.appendChild(messageDiv);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function addAIMessage(htmlContent) {
+const chatMessages = document.getElementById('chatMessages');
+const messageDiv = document.createElement('div');
+messageDiv.className = 'message ai-message';
+
+const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+messageDiv.innerHTML = `
+<div class="message-avatar ai-avatar">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div class="message-content">
+<div class="message-header">
+<div class="message-sender">Aegis-AI</div>
+<div class="message-time">${time}</div>
+</div>
+<div class="message-text">${htmlContent}</div>
+</div>
+`;
+
+chatMessages.appendChild(messageDiv);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function detectTopic(message) {
+message = message.toLowerCase();
+
+if (message.includes('python') || message.includes('javascript') || message.includes('java') ||
+message.includes('code') || message.includes('program') || message.includes('function') ||
+message.includes('oop') || message.includes('class') || message.includes('variable')) {
+currentTopic = "programming";
+updatePersona("Code Expert", "fa-code");
+} else if (message.includes('machine learning') || message.includes('ml') || message.includes('ai') ||
+message.includes('neural') || message.includes('model') || message.includes('train') ||
+message.includes('algorithm') || message.includes('data science')) {
+currentTopic = "machine_learning";
+updatePersona("ML Expert", "fa-robot");
+} else {
+currentTopic = "general";
+updatePersona("Knowledge Assistant", "fa-user-tie");
+}
+}
+
+function updatePersona(name, icon) {
+document.getElementById('personaText').textContent = name;
+const badgeIcon = document.querySelector('#personaBadge i');
+badgeIcon.className = `fas ${icon}`;
+}
+
+function generateAIResponse(userMessage) {
+const responses = knowledgeBase[currentTopic].responses;
+const randomIndex = Math.floor(Math.random() * responses.length);
+return responses[randomIndex];
+}
+
+function showTypingIndicator() {
+const chatMessages = document.getElementById('chatMessages');
+const typingDiv = document.createElement('div');
+typingDiv.className = 'typing-indicator';
+typingDiv.id = 'typingIndicator';
+
+typingDiv.innerHTML = `
+<div class="typing-dot"></div>
+<div class="typing-dot"></div>
+<div class="typing-dot"></div>
+`;
+
+chatMessages.appendChild(typingDiv);
+chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function removeTypingIndicator() {
+const typingIndicator = document.getElementById('typingIndicator');
+if (typingIndicator) {
+typingIndicator.remove();
+}
+}
+
+function clearChat() {
+const chatMessages = document.getElementById('chatMessages');
+const welcomeMessage = document.querySelector('.welcome-message');
+const firstAIMessage = document.querySelector('.ai-message');
+
+const messages = Array.from(chatMessages.children);
+messages.forEach(child => {
+if (child !== welcomeMessage && child !== firstAIMessage && child.id !== 'typingIndicator') {
+child.remove();
+}
 });
+
+chatHistory = [];
+
+addAIMessage(`Chat cleared. I'm ready to continue our conversation based on your uploaded knowledge.`);
 }
 
-// Video player function
-function playVideo(videoId) {
-const video = videos.find(v => v.id === videoId);
-if (!video) return;
+function suggestQuestions() {
+const questions = knowledgeBase[currentTopic].questions;
 
-// Update video views
-video.views++;
-const category = categories[video.category] || { name: 'Tech', color: '#667eea' };
+let questionList = `<strong>Suggested questions based on current topic:</strong><br><br>`;
 
-// Set player content
-document.getElementById('playerTitle').textContent = video.title;
-document.getElementById('playerVideoTitle').textContent = video.title;
-document.getElementById('playerViews').textContent = video.views.toLocaleString();
-document.getElementById('playerLikes').textContent = video.likes;
-document.getElementById('playerDuration').textContent = video.duration;
-document.getElementById('playerDescription').textContent = video.description;
-document.getElementById('playerCategory').textContent = category.name;
-document.getElementById('playerDate').textContent = video.date;
-document.getElementById('playerAuthor').textContent = video.author;
+const shuffled = [...questions].sort(() => 0.5 - Math.random());
+const selected = shuffled.slice(0, 3);
 
-// Set video source
-const videoPlayer = document.getElementById('mainVideoPlayer');
-videoPlayer.src = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-
-// Show the video player
-document.getElementById('videoPlayerPopup').classList.add('active');
-
-// Play video
-setTimeout(() => {
-videoPlayer.play().catch(e => {
-console.log('User must click play button');
+selected.forEach((q, i) => {
+questionList += `${i + 1}. ${q}<br>`;
 });
-}, 300);
 
-// Update the video card views
-loadVideos();
+questionList += `<br><div class="info-note">
+<i class="fas fa-lightbulb"></i> Try asking any of these questions! I'll answer based on your uploaded documents.
+</div>`;
+
+addAIMessage(questionList);
 }
 
-function closeVideoPlayer() {
-const videoPlayer = document.getElementById('mainVideoPlayer');
-videoPlayer.pause();
-videoPlayer.currentTime = 0;
-document.getElementById('videoPlayerPopup').classList.remove('active');
-}
-
-// Share video
-function shareVideo(platform) {
-const title = document.getElementById('playerVideoTitle').textContent;
-const message = `Watch this amazing video: "${title}" on Campus Video Feed!`;
-let url = '';
-
-switch(platform) {
-case 'facebook':
-url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(message)}`;
-break;
-case 'tiktok':
-alert(`Share on TikTok: ${message}`);
+function exportChat() {
+if (chatHistory.length === 0) {
+addAIMessage("No chat history to export yet. Start a conversation first!");
 return;
-case 'whatsapp':
-url = `https://wa.me/?text=${encodeURIComponent(message + ' ' + window.location.href)}`;
-break;
-case 'twitter':
-url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message + ' ' + window.location.href)}`;
-break;
-case 'instagram':
-alert(`Share on Instagram: ${message}`);
-return;
-case 'linkedin':
-url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&summary=${encodeURIComponent(message)}`;
-break;
 }
 
-if(url) window.open(url, '_blank', 'width=600,height=400');
-}
+let exportText = "=== Aegis-AI Chat Export ===\n\n";
 
-// Close modals when clicking outside
-window.onclick = function(event) {
-if (event.target.classList.contains('modal')) {
-closeVideoNewsfeed();
-}
-if (event.target.classList.contains('video-player-container')) {
-closeVideoPlayer();
-}
-};
-
-// Keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-if (e.key === 'Escape') {
-closeVideoNewsfeed();
-closeVideoPlayer();
-}
+chatHistory.forEach((entry, index) => {
+exportText += `[${entry.time}]\n`;
+exportText += `You: ${entry.user}\n`;
+exportText += `Aegis-AI: ${entry.ai.replace(/<[^>]*>/g, '')}\n\n`;
 });
 
-// Demo: Auto open after 1 second
-setTimeout(() => {
-openVideoNewsfeed();
-}, 1000);
+const blob = new Blob([exportText], { type: 'text/plain' });
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = `aegis-ai-chat-${new Date().toLocaleDateString().replace(/\//g, '-')}.txt`;
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+
+addAIMessage(`Chat exported successfully!<br><br><div class="info-note">
+<i class="fas fa-download"></i> Downloaded as text file with ${chatHistory.length} conversation exchanges.
+</div>`);
+}
 </script>
 </body>
 </html>
