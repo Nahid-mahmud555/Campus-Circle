@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Campus Circle </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                Campus Circle
+            </a>
+            <ul class="nav-menu">
+                <!-- <li class="nav-item"><a href="#home" class="nav-link">Home</a></li> -->
+                <li class="nav-item"><a href="#newsfeed" class="nav-link">Newsfeed</a></li>
+                <li class="nav-item"><a href="#marketplace" class="nav-link">Marketplace</a></li>
+                <li class="nav-item"><a href="battle_filed.html" class="nav-link">Battle</a></li>
+                <li class="nav-item"><a href="video_Feed.html" class="nav-link">Video</a></li>
+                <li class="nav-item"><a href="Practice_filed.html" class="nav-link">Practice</a></li>
+                <li class="nav-item"><a href="knowladge.html" class="nav-link">Knowledge</a></li>
+                <li class="nav-item"><a href="AI_Filed.html" class="nav-link">AI</a></li>
+                <li class="nav-item"><a href="#myProfile" class="nav-link">My Profile</a></li>
+                <li class="nav-item"><a href="#login" class="nav-link login btn">Student Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+</body>
+<br><br>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PracticePro - AI-Powered Learning Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -41,14 +84,17 @@
         ::-webkit-scrollbar {
             width: 10px;
         }
+
         ::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb {
             background: var(--primary);
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--primary-dark);
         }
@@ -86,8 +132,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         .logo h1 {
@@ -116,7 +169,8 @@
             gap: 0.5rem;
         }
 
-        .nav-link:hover, .nav-link.active {
+        .nav-link:hover,
+        .nav-link.active {
             background: rgba(99, 102, 241, 0.1);
             color: white;
         }
@@ -180,10 +234,21 @@
             margin-bottom: 1rem;
         }
 
-        .stat-card:nth-child(1) .stat-icon { background: var(--gradient-1); }
-        .stat-card:nth-child(2) .stat-icon { background: var(--gradient-2); }
-        .stat-card:nth-child(3) .stat-icon { background: var(--gradient-3); }
-        .stat-card:nth-child(4) .stat-icon { background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%); }
+        .stat-card:nth-child(1) .stat-icon {
+            background: var(--gradient-1);
+        }
+
+        .stat-card:nth-child(2) .stat-icon {
+            background: var(--gradient-2);
+        }
+
+        .stat-card:nth-child(3) .stat-icon {
+            background: var(--gradient-3);
+        }
+
+        .stat-card:nth-child(4) .stat-icon {
+            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+        }
 
         .stat-value {
             font-size: 2.5rem;
@@ -239,8 +304,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Problems Grid */
@@ -287,9 +359,20 @@
             margin-bottom: 1rem;
         }
 
-        .difficulty-easy { background: rgba(16, 185, 129, 0.2); color: #10b981; }
-        .difficulty-medium { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
-        .difficulty-hard { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .difficulty-easy {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .difficulty-medium {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .difficulty-hard {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
 
         .problem-title {
             font-size: 1.3rem;
@@ -422,8 +505,15 @@
             font-weight: 600;
         }
 
-        .status-pass { background: rgba(16, 185, 129, 0.2); color: #10b981; }
-        .status-fail { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .status-pass {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .status-fail {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
 
         /* Submissions Table */
         .submissions-table {
@@ -515,8 +605,15 @@
         }
 
         @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Responsive Design */
@@ -613,7 +710,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Achievement Badges */
@@ -628,11 +727,20 @@
             margin: 0.25rem;
         }
 
-        .badge-gold { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); }
-        .badge-silver { background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 100%); }
-        .badge-bronze { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+        .badge-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+        }
+
+        .badge-silver {
+            background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 100%);
+        }
+
+        .badge-bronze {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -642,7 +750,7 @@
             </div>
             <h1>PracticePro</h1>
         </div>
-        
+
         <nav class="nav-links">
             <a href="#" class="nav-link active" onclick="showPanel('dashboard')">
                 <i class="fas fa-home"></i> Dashboard
@@ -659,8 +767,12 @@
             <a href="#" class="nav-link" onclick="showPanel('create')">
                 <i class="fas fa-plus-circle"></i> Create
             </a>
+             <a href="index.html" class="nav-link" onclick="history.back()">
+                <i class="fas fa-arrow"></i> Campus Circle
+            </a>
+
         </nav>
-        
+
         <div class="user-profile">
             <div class="avatar">JS</div>
             <div>
@@ -674,10 +786,11 @@
     <main class="main-container">
         <!-- Dashboard Panel -->
         <div id="dashboard-panel" class="content-panel active">
-            <h2 style="font-size: 2rem; margin-bottom: 2rem; background: linear-gradient(135deg, #fff 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <h2
+                style="font-size: 2rem; margin-bottom: 2rem; background: linear-gradient(135deg, #fff 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 Welcome back, John! 👋
             </h2>
-            
+
             <!-- Stats -->
             <div class="stats-grid">
                 <div class="stat-card">
@@ -687,7 +800,7 @@
                     <div class="stat-value">48</div>
                     <div>Problems Solved</div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon">
                         <i class="fas fa-bolt"></i>
@@ -695,7 +808,7 @@
                     <div class="stat-value">1250</div>
                     <div>Total Points</div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon">
                         <i class="fas fa-chart-line"></i>
@@ -703,7 +816,7 @@
                     <div class="stat-value">85%</div>
                     <div>Accuracy Rate</div>
                 </div>
-                
+
                 <div class="stat-card">
                     <div class="stat-icon">
                         <i class="fas fa-ranking-star"></i>
@@ -712,9 +825,10 @@
                     <div>Global Rank</div>
                 </div>
             </div>
-            
+
             <!-- Progress -->
-            <div style="background: var(--card-bg); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; border: 1px solid var(--card-border);">
+            <div
+                style="background: var(--card-bg); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; border: 1px solid var(--card-border);">
                 <h3 style="margin-bottom: 1rem;">Weekly Progress</h3>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 75%"></div>
@@ -724,13 +838,16 @@
                     <span>75% of goal</span>
                 </div>
             </div>
-            
+
             <!-- Recent Activity -->
-            <div style="background: var(--card-bg); border-radius: 16px; padding: 2rem; border: 1px solid var(--card-border);">
+            <div
+                style="background: var(--card-bg); border-radius: 16px; padding: 2rem; border: 1px solid var(--card-border);">
                 <h3 style="margin-bottom: 1.5rem;">Recent Activity</h3>
                 <div style="display: grid; gap: 1rem;">
-                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px;">
-                        <div style="width: 40px; height: 40px; background: var(--gradient-2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                    <div
+                        style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--gradient-2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                             <i class="fas fa-check" style="color: white;"></i>
                         </div>
                         <div>
@@ -738,9 +855,11 @@
                             <div style="color: #94a3b8; font-size: 0.9rem;">+50 points • 2 hours ago</div>
                         </div>
                     </div>
-                    
-                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px;">
-                        <div style="width: 40px; height: 40px; background: var(--gradient-3); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+
+                    <div
+                        style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--gradient-3); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                             <i class="fas fa-star" style="color: white;"></i>
                         </div>
                         <div>
@@ -772,7 +891,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <div class="problems-grid">
                 <!-- Problem cards will be dynamically loaded -->
             </div>
@@ -783,15 +902,16 @@
             <div class="modal-content">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                     <h2 id="problem-modal-title">Problem Title</h2>
-                    <button onclick="closeModal()" style="background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1.5rem;">
+                    <button onclick="closeModal()"
+                        style="background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1.5rem;">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                
+
                 <div id="problem-description" style="margin-bottom: 2rem; line-height: 1.6; color: #cbd5e1;">
                     <!-- Problem description will be loaded here -->
                 </div>
-                
+
                 <div class="editor-container">
                     <div class="editor-header">
                         <select id="languageSelect" class="language-selector">
@@ -818,7 +938,7 @@ def solve_problem(input_data):
     return result</textarea>
                     </div>
                 </div>
-                
+
                 <div class="test-cases" id="test-cases-container">
                     <!-- Test cases will be loaded here -->
                 </div>
@@ -851,7 +971,8 @@ def solve_problem(input_data):
             <div class="leaderboard-container">
                 <div class="leaderboard-item">
                     <div class="rank">#1</div>
-                    <div style="width: 40px; height: 40px; background: var(--gradient-1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                    <div
+                        style="width: 40px; height: 40px; background: var(--gradient-1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
                         AK
                     </div>
                     <div style="flex: 1;">
@@ -860,7 +981,7 @@ def solve_problem(input_data):
                     </div>
                     <div style="font-weight: 800; color: var(--primary);">2850 pts</div>
                 </div>
-                
+
                 <!-- More leaderboard items -->
             </div>
         </div>
@@ -868,34 +989,39 @@ def solve_problem(input_data):
         <!-- Create Panel -->
         <div id="create-panel" class="content-panel">
             <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Create New Problem</h2>
-            <div style="background: var(--card-bg); border-radius: 16px; padding: 2rem; border: 1px solid var(--card-border);">
+            <div
+                style="background: var(--card-bg); border-radius: 16px; padding: 2rem; border: 1px solid var(--card-border);">
                 <div style="display: grid; gap: 1.5rem;">
                     <div>
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Problem Title</label>
-                        <input type="text" id="problemTitle" placeholder="e.g., Two Sum Problem" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 10px; color: white;">
+                        <input type="text" id="problemTitle" placeholder="e.g., Two Sum Problem"
+                            style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 10px; color: white;">
                     </div>
-                    
+
                     <div>
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Description</label>
-                        <textarea id="problemDesc" rows="6" placeholder="Write problem description..." style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 10px; color: white; resize: vertical;"></textarea>
+                        <textarea id="problemDesc" rows="6" placeholder="Write problem description..."
+                            style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 10px; color: white; resize: vertical;"></textarea>
                     </div>
-                    
+
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Difficulty</label>
-                            <select id="problemDifficulty" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 10px; color: white;">
+                            <select id="problemDifficulty"
+                                style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 10px; color: white;">
                                 <option value="easy">Easy</option>
                                 <option value="medium">Medium</option>
                                 <option value="hard">Hard</option>
                             </select>
                         </div>
-                        
+
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Points</label>
-                            <input type="number" id="problemPoints" value="100" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 10px; color: white;">
+                            <input type="number" id="problemPoints" value="100"
+                                style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 10px; color: white;">
                         </div>
                     </div>
-                    
+
                     <div>
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Test Cases</label>
                         <div id="testCasesContainer">
@@ -905,7 +1031,7 @@ def solve_problem(input_data):
                             <i class="fas fa-plus"></i> Add Test Case
                         </button>
                     </div>
-                    
+
                     <button class="btn btn-primary" onclick="createProblem()">
                         <i class="fas fa-plus-circle"></i> Create Problem
                     </button>
@@ -962,7 +1088,7 @@ def solve_problem(input_data):
         ];
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadProblems();
             loadSubmissions();
             setupCodeEditor();
@@ -974,22 +1100,22 @@ def solve_problem(input_data):
             document.querySelectorAll('.content-panel').forEach(panel => {
                 panel.classList.remove('active');
             });
-            
+
             // Remove active from all nav links
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
-            
+
             // Show selected panel
             document.getElementById(`${panelId}-panel`).classList.add('active');
-            
+
             // Set active nav link
             document.querySelectorAll('.nav-link').forEach(link => {
                 if (link.textContent.includes(panelId.charAt(0).toUpperCase() + panelId.slice(1))) {
                     link.classList.add('active');
                 }
             });
-            
+
             // Special handling for dashboard
             if (panelId === 'dashboard') {
                 document.querySelector('.nav-link:nth-child(1)').classList.add('active');
@@ -1000,7 +1126,7 @@ def solve_problem(input_data):
         function loadProblems() {
             const grid = document.querySelector('.problems-grid');
             grid.innerHTML = '';
-            
+
             problemsData.forEach(problem => {
                 const card = document.createElement('div');
                 card.className = 'problem-card';
@@ -1036,7 +1162,7 @@ def solve_problem(input_data):
         function loadSubmissions() {
             const tbody = document.getElementById('submissions-body');
             tbody.innerHTML = '';
-            
+
             submissionsData.forEach(sub => {
                 const statusClass = sub.status === 'Accepted' ? 'status-pass' : 'status-fail';
                 const row = document.createElement('tr');
@@ -1056,7 +1182,7 @@ def solve_problem(input_data):
         function openProblemEditor(problemId) {
             const problem = problemsData.find(p => p.id === problemId);
             if (!problem) return;
-            
+
             document.getElementById('problem-modal-title').textContent = problem.title;
             document.getElementById('problem-description').innerHTML = `
                 <h3 style="margin-bottom: 1rem; color: white;">Problem Statement</h3>
@@ -1073,13 +1199,13 @@ Output: [0,1]
                     <li>-10^9 ≤ target ≤ 10^9</li>
                 </ul>
             `;
-            
+
             // Load test cases
             const testContainer = document.getElementById('test-cases-container');
             testContainer.innerHTML = `
                 <h3 style="margin-bottom: 1rem; color: white;">Test Cases</h3>
             `;
-            
+
             if (problem.testCases) {
                 problem.testCases.forEach((testCase, index) => {
                     const testDiv = document.createElement('div');
@@ -1103,7 +1229,7 @@ Output: [0,1]
                     testContainer.appendChild(testDiv);
                 });
             }
-            
+
             document.getElementById('editor-modal').style.display = 'flex';
         }
 
@@ -1115,14 +1241,14 @@ Output: [0,1]
         // Setup Code Editor
         function setupCodeEditor() {
             const editor = document.getElementById('codeEditor');
-            
+
             // Simple syntax highlighting (basic)
-            editor.addEventListener('input', function() {
+            editor.addEventListener('input', function () {
                 // Basic Python highlighting
                 const code = editor.value;
                 const lines = code.split('\n');
                 let highlighted = '';
-                
+
                 lines.forEach(line => {
                     let hlLine = line
                         .replace(/def\b/g, '<span style="color: #ff79c6;">def</span>')
@@ -1131,7 +1257,7 @@ Output: [0,1]
                         .replace(/"[^"]*"/g, '<span style="color: #f1fa8c;">$&</span>');
                     highlighted += hlLine + '\n';
                 });
-                
+
                 // Create a temporary element to show highlighting
                 // In production, use a proper code editor library
             });
@@ -1140,10 +1266,10 @@ Output: [0,1]
         // Run Code
         function runCode() {
             const testCases = document.querySelectorAll('#test-cases-container .test-case');
-            
+
             testCases.forEach((testCase, index) => {
                 const status = testCase.querySelector('.test-case-status');
-                
+
                 // Simulate testing with random result
                 setTimeout(() => {
                     if (Math.random() > 0.3) {
@@ -1162,27 +1288,27 @@ Output: [0,1]
         // Submit Code
         function submitCode() {
             const modal = document.getElementById('editor-modal');
-            
+
             // Show loading
             const submitBtn = modal.querySelector('.btn-primary');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             submitBtn.disabled = true;
-            
+
             // Simulate submission
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-                
+
                 // Show result modal
                 alert('Submission Successful! Your solution passed all test cases. +100 points!');
                 closeModal();
-                
+
                 // Update UI
                 const pointsElement = document.querySelector('.stat-card:nth-child(2) .stat-value');
                 const currentPoints = parseInt(pointsElement.textContent);
                 pointsElement.textContent = (currentPoints + 100).toString();
-                
+
                 // Add to submissions
                 const newSubmission = {
                     problem: document.getElementById('problem-modal-title').textContent,
@@ -1192,10 +1318,10 @@ Output: [0,1]
                     memory: Math.floor(Math.random() * 30) + 10 + 'MB',
                     submitted: 'Just now'
                 };
-                
+
                 submissionsData.unshift(newSubmission);
                 loadSubmissions();
-                
+
             }, 2000);
         }
 
@@ -1203,7 +1329,7 @@ Output: [0,1]
         function addTestCase() {
             const container = document.getElementById('testCasesContainer');
             const testCaseCount = container.children.length + 1;
-            
+
             const testCaseDiv = document.createElement('div');
             testCaseDiv.className = 'test-case';
             testCaseDiv.style.marginBottom = '1rem';
@@ -1223,7 +1349,7 @@ Output: [0,1]
                     </div>
                 </div>
             `;
-            
+
             container.appendChild(testCaseDiv);
         }
 
@@ -1233,21 +1359,21 @@ Output: [0,1]
             const desc = document.getElementById('problemDesc').value;
             const difficulty = document.getElementById('problemDifficulty').value;
             const points = document.getElementById('problemPoints').value;
-            
+
             if (!title || !desc) {
                 alert('Please fill in all required fields');
                 return;
             }
-            
+
             // Show success message
             alert(`Problem "${title}" created successfully! It will now be available for students to solve.`);
-            
+
             // Reset form
             document.getElementById('problemTitle').value = '';
             document.getElementById('problemDesc').value = '';
             document.getElementById('problemPoints').value = '100';
             document.getElementById('testCasesContainer').innerHTML = '';
-            
+
             // Add to problems list (in real app, this would go to backend)
             const newProblem = {
                 id: problemsData.length + 1,
@@ -1257,7 +1383,7 @@ Output: [0,1]
                 solved: false,
                 description: desc
             };
-            
+
             problemsData.push(newProblem);
             showPanel('problems');
             loadProblems();
@@ -1272,7 +1398,7 @@ Output: [0,1]
         }
 
         // Close modal when clicking outside
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modal = document.getElementById('editor-modal');
             if (event.target === modal) {
                 closeModal();
@@ -1280,4 +1406,5 @@ Output: [0,1]
         }
     </script>
 </body>
+
 </html>
