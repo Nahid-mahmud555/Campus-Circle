@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Campus Circle </title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -16,11 +18,16 @@
                 Campus Circle
             </a>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <!-- <li class="nav-item"><a href="#home" class="nav-link">Home</a></li> -->
                 <li class="nav-item"><a href="#newsfeed" class="nav-link">Newsfeed</a></li>
                 <li class="nav-item"><a href="#marketplace" class="nav-link">Marketplace</a></li>
+                <li class="nav-item"><a href="battle_filed.html" class="nav-link">Battle</a></li>
+                <li class="nav-item"><a href="video_Feed.html" class="nav-link">Video</a></li>
+                <li class="nav-item"><a href="Practice_filed.html" class="nav-link">Practice</a></li>
+                <li class="nav-item"><a href="knowladge.html" class="nav-link">Knowledge</a></li>
+                <li class="nav-item"><a href="AI_Filed.html" class="nav-link">AI</a></li>
                 <li class="nav-item"><a href="#myProfile" class="nav-link">My Profile</a></li>
-                <li class="nav-item"><a href="#login" class="nav-link login-btn">Student Login</a></li>
+                <li class="nav-item"><a href="#login" class="nav-link login btn">Student Login</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -29,21 +36,19 @@
             </div>
         </div>
     </nav>
-
     <!-- Home Section -->
     <section id="home" class="home-section">
         <div class="container">
             <div class="hero-content">
                 <h1>Welcome to <span class="highlight">Campus Circle</span></h1>
-                <p>“A safe, verified space for varsity students to share skills, learn, and grow together.”</p>
+                <p>“A safe, verified space for varsity students to share skills,
+                    learn, and grow together.”</p>
                 <div class="hero-buttons">
                     <a href="#login" class="btn primary">Get Started</a>
-                    
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Step 1: Login Section -->
     <section id="login" class="login-section">
         <div class="container">
@@ -53,14 +58,15 @@
                     <h2>Student Verification</h2>
                     <p>Enter your Varendra University details</p>
                 </div>
-                
                 <form class="login-form" id="verificationForm">
                     <div class="form-group">
                         <label for="studentId">Student ID *</label>
-                        <input type="text" id="studentId" placeholder="2021-XXX-XXX" required>
+                        <input type="text" id="studentId" placeholder="2021-XXX
+XXX" required>
+                        required>
+                        Engineering</option>
                         <small>Format: Year-Department-Roll</small>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group">
                             <label for="batch">Batch *</label>
@@ -75,46 +81,41 @@
                         </div>
                         <div class="form-group">
                             <label for="section">Section *</label>
-                            <input type="text" id="section" placeholder="A" required>
+                            <input type="text" id="section" placeholder="A" </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="department">Department *</label>
-                        <select id="department" required>
-                            <option value="">Select Department</option>
-                            <option value="cse">Computer Science & Engineering</option>
-                            <option value="bba">Business Administration</option>
-                            <option value="english">English</option>
-                            <option value="law">Law & Justice</option>
-                            <option value="economics">Economics</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="idProof">Student ID Proof (Optional)</label>
-                        <div class="file-upload">
-                            <input type="file" id="idProof" accept="image/*,.pdf">
-                            <label for="idProof" class="file-label">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                Upload ID Card Photo
-                            </label>
+                        <div class="form-group">
+                            <label for="department">Department *</label>
+                            <select id="department" required>
+                                <option value="">Select Department</option>
+                                <option value="cse">Computer Science &
+                                <option value="bba">Business Administration</option>
+                                <option value="english">English</option>
+                                <option value="law">Law & Justice</option>
+                                <option value="economics">Economics</option>
+                                <option value="other">Other</option>
+                            </select>
                         </div>
-                    </div>
-
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-lock"></i>
-                        Verify & Continue
-                    </button>
-
-                    <div class="ai-note">
-                        <i class="fas fa-robot"></i>
-                        <span>AI will verify your student status automatically</span>
-                    </div>
+                        <div class="form-group">
+                            <label for="idProof">Student ID Proof (Optional)</label>
+                            <div class="file-upload">
+                                <input type="file" id="idProof" accept="image/*,.pdf">
+                                <label for="idProof" class="file-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    Upload ID Card Photo
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-lock"></i>
+                            Verify & Continue
+                        </button>
+                        <div class="ai-note">
+                            <i class="fas fa-robot"></i>
+                            <span>AI will verify your student status
+                                automatically</span>
+                        </div>
                 </form>
             </div>
-
             <div class="login-features">
                 <div class="feature-tip">
                     <i class="fas fa-shield-alt"></i>
@@ -134,19 +135,18 @@
             </div>
         </div>
     </section>
-
     <!-- Step 2: Profile Setup -->
     <section id="profileSetup" class="profile-section hidden">
         <div class="container">
             <div class="profile-card">
                 <div class="profile-header">
                     <div class="avatar-preview">
-                        <img id="avatarPreview" src="https://api.dicebear.com/7.x/avataaars/svg?seed=campus&backgroundColor=8b5fbf" alt="Avatar">
+                        <img id="avatarPreview" src="https://api.dicebear.com/7.x/avataaars/svg?
+seed=campus&backgroundColor=8b5fbf" alt="Avatar">
                     </div>
                     <h2>Create Your Profile</h2>
                     <p>Tell us about yourself to get personalized experience</p>
                 </div>
-
                 <form class="profile-form" id="profileForm">
                     <div class="profile-type-selection">
                         <h4>I want to primarily:</h4>
@@ -177,44 +177,43 @@
                             </label>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label for="interests">Your Interests (Select multiple)</label>
+                        <label for="interests">Your Interests (Select
+                            multiple)</label>
                         <div class="interest-tags">
-                            <span class="interest-tag" data-interest="programming">Programming</span>
-                            <span class="interest-tag" data-interest="design">Graphic Design</span>
-                            <span class="interest-tag" data-interest="business">Business</span>
-                            <span class="interest-tag" data-interest="writing">Content Writing</span>
-                            <span class="interest-tag" data-interest="music">Music</span>
-                            <span class="interest-tag" data-interest="sports">Sports</span>
-                            <span class="interest-tag" data-interest="language">Language</span>
-                            <span class="interest-tag" data-interest="math">Mathematics</span>
-                            <span class="interest-tag" data-interest="science">Science</span>
-                            <span class="interest-tag" data-interest="arts">Arts</span>
+                            <span class="interest-tag" data interest="programming">Programming</span>
+                            <span class="interest-tag" data interest="design">Graphic Design</span>
+                            <span class="interest-tag" data interest="business">Business</span>
+                            <span class="interest-tag" data interest="writing">Content Writing</span>
+                            <span class="interest-tag" data interest="music">Music</span>
+                            <span class="interest-tag" data interest="sports">Sports</span>
+                            <span class="interest-tag" data interest="language">Language</span>
+                            <span class="interest-tag" data interest="math">Mathematics</span>
+                            <span class="interest-tag" data interest="science">Science</span>
+                            <span class="interest-tag" data interest="arts">Arts</span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="skills">Your Skills (Optional)</label>
-                        <input type="text" id="skills" placeholder="e.g., Python, Graphic Design, Content Writing...">
+                        <input type="text" id="skills" placeholder="e.g., 
+Python, Graphic Design, Content Writing...">
                         <small>Separate skills with commas</small>
                     </div>
-
                     <div class="form-group">
                         <label for="bio">About Me</label>
-                        <textarea id="bio" placeholder="Tell us about yourself, your goals, or what you're looking for..." rows="4"></textarea>
+                        <textarea id="bio" placeholder="Tell us about yourself, 
+your goals, or what you're looking for..." rows="4"></textarea>
                     </div>
-
                     <div class="ai-suggestions">
                         <h4><i class="fas fa-lightbulb"></i> AI Suggestions</h4>
                         <div class="suggestion-cards">
                             <div class="suggestion-card">
                                 <i class="fas fa-code"></i>
-                                <p>Based on your department, we suggest focusing on programming skills and academic tutoring</p>
+                                <p>Based on your department, we suggest focusing
+                                    on programming skills and academic tutoring</p>
                             </div>
                         </div>
                     </div>
-
                     <button type="submit" class="submit-btn">
                         <i class="fas fa-check"></i>
                         Complete Profile & Enter Newsfeed
@@ -223,7 +222,6 @@
             </div>
         </div>
     </section>
-
     <!-- Newsfeed Section -->
     <section id="newsfeed" class="newsfeed-section hidden">
         <div class="container">
@@ -231,15 +229,16 @@
                 <h2><i class="fas fa-newspaper"></i> Campus Newsfeed</h2>
                 <p>Discover skills, connect with peers, and stay updated</p>
             </div>
-
             <div class="newsfeed-content">
                 <!-- Left Sidebar -->
                 <div class="newsfeed-sidebar">
                     <!-- Create Post Card -->
                     <div class="create-post-card">
                         <div class="post-input">
-                            <img id="currentUserAvatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=campus&backgroundColor=8b5fbf" alt="User" class="user-avatar">
-                            <input type="text" placeholder="Share your skills or ask for help..." id="postInput">
+                            <img id="currentUserAvatar" src="https://api.dicebear.com/7.x/avataaars/svg?
+seed=campus&backgroundColor=8b5fbf" alt="User" class="user-avatar">
+                            <input type="text" placeholder="Share your skills or 
+ask for help..." id="postInput">
                         </div>
                         <div class="post-actions">
                             <button type="button" class="post-action-btn" onclick="showUploadSection()">
@@ -253,33 +252,32 @@
                             </button>
                         </div>
                     </div>
-
                     <!-- Quick Filters -->
                     <div class="quick-filters">
                         <h4>Quick Filters</h4>
                         <div class="filter-tags">
-                            <span class="filter-tag active" data-filter="all">All Posts</span>
-                            <span class="filter-tag" data-filter="skill">Skills</span>
-                            <span class="filter-tag" data-filter="help">Help Posts</span>
-                            <span class="filter-tag" data-filter="tech">Technology</span>
-                            <span class="filter-tag" data-filter="academic">Academic</span>
+                            <span class="filter-tag active" data filter="all">All Posts</span>
+                            <span class="filter-tag" data filter="skill">Skills</span>
+                            <span class="filter-tag" data-filter="help">Help
+                                Posts</span>
+                            <span class="filter-tag" data filter="tech">Technology</span>
+                            <span class="filter-tag" data filter="academic">Academic</span>
                         </div>
                     </div>
                 </div>
-
                 <!-- Main Feed -->
                 <div class="newsfeed-main">
                     <!-- Search Bar -->
                     <div class="search-container">
                         <div class="search-box newsfeed-search">
                             <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Search posts, skills, or help..." id="newsfeedSearch">
+                            <input type="text" placeholder="Search posts, 
+skills, or help..." id="newsfeedSearch">
                         </div>
                         <button type="button" class="ai-help-btn" onclick="showChatbot()">
                             <i class="fas fa-robot"></i> AI Assistant
                         </button>
                     </div>
-
                     <!-- Posts Container -->
                     <div class="posts-container" id="postsContainer">
                         <!-- Posts will be loaded here by JavaScript -->
@@ -288,59 +286,56 @@
             </div>
         </div>
     </section>
-
     <!-- Marketplace Section -->
     <section id="marketplace" class="marketplace-section hidden">
         <div class="container">
             <h2 class="section-title">Skills Marketplace</h2>
-            
             <!-- Marketplace Access Control -->
             <div id="marketplaceAccess" class="access-denied">
                 <div class="access-card">
                     <i class="fas fa-lock"></i>
                     <h3>Access Required</h3>
-                    <p>Please complete student verification to access the marketplace</p>
+                    <p>Please complete student verification to access the
+                        marketplace</p>
                     <button type="button" class="btn primary" onclick="showLoginSection()">Verify Now</button>
                 </div>
             </div>
-
             <!-- Marketplace Content -->
             <div id="marketplaceContent" class="hidden">
                 <div class="marketplace-filters">
                     <div class="filter-group">
-                        <button type="button" class="filter-btn active" data-filter="all">All Skills</button>
-                        <button type="button" class="filter-btn" data-filter="tech">Technology</button>
-                        <button type="button" class="filter-btn" data-filter="design">Design</button>
-                        <button type="button" class="filter-btn" data-filter="business">Business</button>
-                        <button type="button" class="filter-btn" data-filter="academic">Academic</button>
+                        <button type="button" class="filter-btn active" data filter="all">All Skills</button>
+                        <button type="button" class="filter-btn" data filter="tech">Technology</button>
+                        <button type="button" class="filter-btn" data filter="design">Design</button>
+                        <button type="button" class="filter-btn" data filter="business">Business</button>
+                        <button type="button" class="filter-btn" data filter="academic">Academic</button>
                     </div>
-                    
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Search skills...">
+                        <input type="text" id="searchInput" placeholder="Search 
+skills...">
                     </div>
-                    
                     <button type="button" class="ai-chat-btn" onclick="showChatbot()">
                         <i class="fas fa-robot"></i> AI Help
                     </button>
                 </div>
-
                 <div class="marketplace-grid" id="marketplaceGrid">
                     <!-- Courses will be loaded here by JavaScript -->
                 </div>
             </div>
         </div>
     </section>
-
     <!-- My Profile Section -->
     <section id="myProfile" class="profile-page-section hidden">
         <div class="container">
             <div class="profile-header-card">
                 <div class="profile-info">
-                    <img id="profileUserAvatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=campus&backgroundColor=8b5fbf" alt="User" class="profile-avatar">
+                    <img id="profileUserAvatar" src="https://api.dicebear.com/7.x/avataaars/svg?
+seed=campus&backgroundColor=8b5fbf" alt="User" class="profile-avatar">
                     <div class="profile-details">
                         <h2 id="profileUsername">VU_Student</h2>
-                        <p id="profileDepartment">Computer Science & Engineering • Batch 2022</p>
+                        <p id="profileDepartment">Computer Science & Engineering
+                            • Batch 2022</p>
                         <div class="profile-stats">
                             <div class="stat">
                                 <strong id="postsCount">0</strong>
@@ -358,7 +353,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="profile-content">
                 <!-- User's Posts -->
                 <div class="profile-posts">
@@ -367,38 +361,38 @@
                         <div class="empty-state">
                             <i class="fas fa-edit"></i>
                             <h5>No posts yet</h5>
-                            <p>Share your first skill or ask for help to get started!</p>
+                            <p>Share your first skill or ask for help to get
+                                started!</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Upload Section -->
     <section id="uploadSection" class="upload-section hidden">
         <div class="container">
             <div class="upload-card">
                 <div class="upload-header">
                     <h2>Sell Your Skills</h2>
-                    <p>Create a listing to offer your expertise to other students</p>
+                    <p>Create a listing to offer your expertise to other
+                        students</p>
                 </div>
-
                 <form class="upload-form" id="uploadForm">
                     <div class="form-group">
                         <label for="itemTitle">Skill Title *</label>
-                        <input type="text" id="itemTitle" placeholder="e.g., Web Development Bootcamp" required>
+                        <input type="text" id="itemTitle" placeholder="e.g., Web 
+Development Bootcamp" required>
                     </div>
-
                     <div class="form-group">
                         <label for="itemDescription">Description *</label>
-                        <textarea id="itemDescription" placeholder="Describe what you'll teach, requirements, and what students will learn..." rows="4" required></textarea>
+                        <textarea id="itemDescription" placeholder="Describe 
+what you'll teach, requirements, and what students will learn..." rows="4" required></textarea>
                         <div class="ai-feedback">
                             <i class="fas fa-robot"></i>
                             <span>AI is checking description clarity...</span>
                         </div>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group">
                             <label for="itemPrice">Price (BDT) *</label>
@@ -409,7 +403,6 @@
                             <input type="number" id="itemSessions" placeholder="4" min="1">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="itemCategory">Category *</label>
                         <select id="itemCategory" required>
@@ -422,10 +415,10 @@
                             <option value="creative">Creative</option>
                         </select>
                     </div>
-
                     <!-- Department Selection - NEW FEATURE -->
                     <div class="form-group">
-                        <label for="targetDepartments">Available For Departments *</label>
+                        <label for="targetDepartments">Available For Departments
+                            *</label>
                         <div class="department-selection">
                             <div class="department-options">
                                 <label class="department-option">
@@ -465,9 +458,9 @@
                                 </label>
                             </div>
                         </div>
-                        <small>Select which departments can see and book this skill</small>
+                        <small>Select which departments can see and book this
+                            skill</small>
                     </div>
-
                     <!-- Image Upload Section -->
                     <div class="form-group">
                         <label for="itemImage">Skill Image (Optional)</label>
@@ -483,9 +476,9 @@
                             </label>
                         </div>
                     </div>
-
                     <div class="commission-preview">
-                        <h4><i class="fas fa-calculator"></i> Commission Preview</h4>
+                        <h4><i class="fas fa-calculator"></i> Commission
+                            Preview</h4>
                         <div class="commission-details">
                             <div class="commission-row">
                                 <span>Your Earnings:</span>
@@ -500,9 +493,9 @@
                                 <span id="totalAmount">0 ৳</span>
                             </div>
                         </div>
-                        <p class="commission-message">Platform fee: 15% will be deducted</p>
+                        deducted</p>
+                        <p class="commission-message">Platform fee: 15% will be
                     </div>
-
                     <button type="submit" class="submit-btn">
                         <i class="fas fa-upload"></i>
                         Publish Skill Listing
@@ -511,7 +504,6 @@
             </div>
         </div>
     </section>
-
     <!-- AI Chatbot -->
     <div id="aiChatbot" class="ai-chatbot-section hidden">
         <div class="chatbot-card">
@@ -527,30 +519,32 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-
             <div class="chat-messages" id="chatMessages">
                 <div class="message ai-message">
                     <div class="message-content">
-                        Hello! I'm your Campus AI Assistant. I can help you with buying/selling skills, marketplace guidance, campus information, and more. What would you like to know?
+                        Hello! I'm your Campus AI Assistant. I can help you with
+                        buying/selling skills, marketplace guidance, campus information, and more. What
+                        would you like to know?
                     </div>
                 </div>
             </div>
-
             <div class="quick-questions">
-                <button type="button" class="quick-question" onclick="askQuickQuestion('What skills are trending?')">Trending Skills</button>
-                <button type="button" class="quick-question" onclick="askQuickQuestion('How to sell my skills?')">Sell Skills</button>
-                <button type="button" class="quick-question" onclick="askQuickQuestion('Campus events?')">Campus Events</button>
+                <button type="button" class="quick-question"
+                    onclick="askQuickQuestion('What skills are trending?')">Trending Skills</button>
+                <button type="button" class="quick-question" onclick="askQuickQuestion('How to sell my skills?')">Sell
+                    Skills</button>
+                <button type="button" class="quick-question" onclick="askQuickQuestion('Campus events?')">Campus
+                    Events</button>
             </div>
-
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Ask me anything...">
+                <input type="text" id="chatInput" placeholder="Ask me 
+anything...">
                 <button type="button" id="sendMessage">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
         </div>
     </div>
-
     <!-- Help Post Modal -->
     <div id="helpModal" class="modal hidden">
         <div class="modal-content">
@@ -563,12 +557,15 @@
             <div class="modal-body">
                 <form id="helpPostForm">
                     <div class="form-group">
-                        <label for="helpTitle">What do you need help with?</label>
-                        <input type="text" id="helpTitle" placeholder="e.g., Need help with Python assignment..." required>
+                        <label for="helpTitle">What do you need help
+                            with?</label>
+                        <input type="text" id="helpTitle" placeholder="e.g., 
+Need help with Python assignment..." required>
                     </div>
                     <div class="form-group">
                         <label for="helpDescription">Description</label>
-                        <textarea id="helpDescription" placeholder="Describe what you need help with..." rows="4" required></textarea>
+                        <textarea id="helpDescription" placeholder="Describe 
+what you need help with..." rows="4" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="helpCategory">Category</label>
@@ -587,8 +584,8 @@
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
-</html>
 
+
+</html
