@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Campus Circle </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                Campus Circle
+            </a>
+            <ul class="nav-menu">
+                <!-- <li class="nav-item"><a href="#home" class="nav-link">Home</a></li> -->
+                <li class="nav-item"><a href="#newsfeed" class="nav-link">Newsfeed</a></li>
+                <li class="nav-item"><a href="#marketplace" class="nav-link">Marketplace</a></li>
+                <li class="nav-item"><a href="battle_filed.html" class="nav-link">Battle</a></li>
+                <li class="nav-item"><a href="video_Feed.html" class="nav-link">Video</a></li>
+                <li class="nav-item"><a href="Practice_filed.html" class="nav-link">Practice</a></li>
+                <li class="nav-item"><a href="knowladge.html" class="nav-link">Knowledge</a></li>
+                <li class="nav-item"><a href="AI_Filed.html" class="nav-link">AI</a></li>
+                <li class="nav-item"><a href="#myProfile" class="nav-link">My Profile</a></li>
+                <li class="nav-item"><a href="#login" class="nav-link login btn">Student Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+</body>
+<br><br>
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Nexus | Learn • Share • Grow</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -42,10 +86,12 @@
         ::-webkit-scrollbar {
             width: 12px;
         }
+
         ::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb {
             background: var(--gradient-primary);
             border-radius: 10px;
@@ -70,10 +116,23 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
         }
 
         /* Header */
@@ -109,8 +168,13 @@
         }
 
         @keyframes glow {
-            from { box-shadow: var(--neon-glow); }
-            to { box-shadow: 0 0 30px rgba(124, 58, 237, 0.6); }
+            from {
+                box-shadow: var(--neon-glow);
+            }
+
+            to {
+                box-shadow: 0 0 30px rgba(124, 58, 237, 0.6);
+            }
         }
 
         .logo-text h1 {
@@ -346,8 +410,15 @@
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Knowledge Cards Grid */
@@ -402,8 +473,15 @@
             color: var(--primary);
         }
 
-        .type-free { background: rgba(16, 185, 129, 0.2); color: var(--success); }
-        .type-paid { background: rgba(245, 158, 11, 0.2); color: var(--accent); }
+        .type-free {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .type-paid {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--accent);
+        }
 
         .knowledge-title {
             font-size: 1.4rem;
@@ -613,8 +691,15 @@
         }
 
         @keyframes modalSlide {
-            from { transform: translateY(60px) scale(0.95); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
+            from {
+                transform: translateY(60px) scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
         }
 
         /* GitHub Integration */
@@ -627,6 +712,7 @@
 
         /* Responsive Design */
         @media (max-width: 1200px) {
+
             .knowledge-grid,
             .events-grid,
             .jobs-grid {
@@ -703,8 +789,13 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         /* Tags */
@@ -741,7 +832,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Notification Badge */
@@ -763,11 +856,19 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Floating Particles -->
     <div class="particles" id="particles"></div>
@@ -785,6 +886,7 @@
         </div>
 
         <nav class="nav-main">
+
             <a href="#" class="nav-link active" onclick="showPanel('explore')">
                 <i class="fas fa-compass"></i> Explore
             </a>
@@ -802,6 +904,10 @@
             <a href="#" class="nav-link" onclick="showPanel('github')">
                 <i class="fab fa-github"></i> GitHub
             </a>
+            <a href="index.html" class="nav-link" onclick="history.back()">
+                <i class="fas fa-arrow"></i> Campus Circle
+            </a>
+
         </nav>
 
         <div class="cta-buttons">
@@ -818,8 +924,9 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Where Experts Share,<br>Students Learn</h1>
-            <p>A collaborative platform where industry experts share cutting-edge knowledge, students learn through curated resources, and everyone grows together in the tech ecosystem.</p>
-            
+            <p>A collaborative platform where industry experts share cutting-edge knowledge, students learn through
+                curated resources, and everyone grows together in the tech ecosystem.</p>
+
             <div class="hero-stats">
                 <div class="stat">
                     <div class="stat-value">1,250+</div>
@@ -865,7 +972,8 @@
         <!-- Explore Panel -->
         <div id="explore-panel" class="content-panel active">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <h2 style="font-size: 2.5rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <h2
+                    style="font-size: 2.5rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                     Latest Knowledge Resources
                 </h2>
                 <select class="form-select" style="width: auto; min-width: 200px;">
@@ -891,7 +999,8 @@
 
         <!-- Events Panel -->
         <div id="events-panel" class="content-panel">
-            <h2 style="font-size: 2.5rem; margin-bottom: 2rem; background: var(--gradient-secondary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <h2
+                style="font-size: 2.5rem; margin-bottom: 2rem; background: var(--gradient-secondary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 Upcoming Tech Events
             </h2>
 
@@ -902,7 +1011,8 @@
 
         <!-- Career Panel -->
         <div id="career-panel" class="content-panel">
-            <h2 style="font-size: 2.5rem; margin-bottom: 2rem; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <h2
+                style="font-size: 2.5rem; margin-bottom: 2rem; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 Job Opportunities
             </h2>
 
@@ -915,15 +1025,17 @@
         <div id="share-panel" class="content-panel">
             <div class="create-form">
                 <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Share Your Knowledge</h2>
-                
+
                 <div class="form-group">
                     <label class="form-label">Resource Title *</label>
-                    <input type="text" class="form-input" placeholder="e.g., Complete React Masterclass 2024" id="resourceTitle">
+                    <input type="text" class="form-input" placeholder="e.g., Complete React Masterclass 2024"
+                        id="resourceTitle">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Description *</label>
-                    <textarea class="form-textarea" placeholder="Detailed description of your resource..." id="resourceDesc"></textarea>
+                    <textarea class="form-textarea" placeholder="Detailed description of your resource..."
+                        id="resourceDesc"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -942,7 +1054,8 @@
 
                 <div class="form-group">
                     <label class="form-label">Price (if paid)</label>
-                    <input type="number" class="form-input" placeholder="Enter amount in USD" id="resourcePrice" min="0">
+                    <input type="number" class="form-input" placeholder="Enter amount in USD" id="resourcePrice"
+                        min="0">
                 </div>
 
                 <div class="form-group">
@@ -952,10 +1065,12 @@
 
                 <div class="form-group">
                     <label class="form-label">Tags</label>
-                    <input type="text" class="form-input" placeholder="e.g., react, javascript, frontend" id="resourceTags">
+                    <input type="text" class="form-input" placeholder="e.g., react, javascript, frontend"
+                        id="resourceTags">
                 </div>
 
-                <button class="btn btn-primary" onclick="shareResource()" style="width: 100%; padding: 1.2rem; font-size: 1.1rem;">
+                <button class="btn btn-primary" onclick="shareResource()"
+                    style="width: 100%; padding: 1.2rem; font-size: 1.1rem;">
                     <i class="fas fa-share"></i> Publish Resource
                 </button>
             </div>
@@ -966,17 +1081,20 @@
             <div class="github-card">
                 <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Open Source Collaboration</h2>
                 <p style="color: #cbd5e1; margin-bottom: 2rem; line-height: 1.6;">
-                    Connect your GitHub account to share repositories, collaborate on open-source projects, and contribute to the community.
+                    Connect your GitHub account to share repositories, collaborate on open-source projects, and
+                    contribute to the community.
                 </p>
 
                 <div style="display: grid; gap: 1.5rem;">
                     <div style="display: flex; align-items: center; gap: 1rem;">
-                        <div style="width: 60px; height: 60px; background: #24292e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                        <div
+                            style="width: 60px; height: 60px; background: #24292e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
                             <i class="fab fa-github"></i>
                         </div>
                         <div style="flex: 1;">
                             <div style="font-weight: 600;">Connect GitHub Account</div>
-                            <div style="color: #94a3b8; font-size: 0.9rem;">Link your repositories to share with the community</div>
+                            <div style="color: #94a3b8; font-size: 0.9rem;">Link your repositories to share with the
+                                community</div>
                         </div>
                         <button class="btn btn-primary">
                             <i class="fas fa-link"></i> Connect
@@ -998,10 +1116,12 @@
             <div class="modal-content">
                 <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 2rem;">
                     <div>
-                        <span id="modal-type" class="type-free" style="margin-bottom: 1rem; display: inline-block;">FREE</span>
+                        <span id="modal-type" class="type-free"
+                            style="margin-bottom: 1rem; display: inline-block;">FREE</span>
                         <h2 id="modal-title" style="font-size: 2rem; margin-bottom: 1rem;"></h2>
                     </div>
-                    <button onclick="closeModal()" style="background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1.5rem;">
+                    <button onclick="closeModal()"
+                        style="background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1.5rem;">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -1010,7 +1130,8 @@
                     <div style="flex: 1;">
                         <div style="color: #94a3b8; margin-bottom: 0.5rem;">Shared by</div>
                         <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                            <div
+                                style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 600;">
                                 AK
                             </div>
                             <div>
@@ -1021,7 +1142,8 @@
                     </div>
                     <div style="flex: 1;">
                         <div style="color: #94a3b8; margin-bottom: 0.5rem;">Price</div>
-                        <div id="modal-price" style="font-size: 2rem; font-weight: 800; color: var(--accent);">FREE</div>
+                        <div id="modal-price" style="font-size: 2rem; font-weight: 800; color: var(--accent);">FREE
+                        </div>
                     </div>
                 </div>
 
@@ -1179,7 +1301,7 @@
         ];
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             createParticles();
             loadKnowledgeResources();
             loadEvents();
@@ -1207,27 +1329,27 @@
             document.querySelectorAll('.content-panel').forEach(panel => {
                 panel.classList.remove('active');
             });
-            
+
             // Remove active from all tabs
             document.querySelectorAll('.section-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-            
+
             // Remove active from all nav links
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
-            
+
             // Show selected panel
             document.getElementById(`${panelId}-panel`).classList.add('active');
-            
+
             // Set active tab
             document.querySelectorAll('.section-tab').forEach(tab => {
                 if (tab.textContent.includes(panelId.charAt(0).toUpperCase() + panelId.slice(1))) {
                     tab.classList.add('active');
                 }
             });
-            
+
             // Set active nav link
             document.querySelectorAll('.nav-link').forEach(link => {
                 if (link.textContent.includes(panelId.charAt(0).toUpperCase() + panelId.slice(1))) {
@@ -1240,9 +1362,9 @@
         function loadKnowledgeResources() {
             const grid = document.getElementById('knowledge-resources');
             if (!grid) return;
-            
+
             grid.innerHTML = '';
-            
+
             knowledgeData.forEach(resource => {
                 const card = document.createElement('div');
                 card.className = 'knowledge-card';
@@ -1290,9 +1412,9 @@
         function loadEvents() {
             const grid = document.getElementById('events-list');
             if (!grid) return;
-            
+
             grid.innerHTML = '';
-            
+
             eventsData.forEach(event => {
                 const card = document.createElement('div');
                 card.className = 'event-card';
@@ -1330,9 +1452,9 @@
         function loadJobs() {
             const grid = document.getElementById('jobs-list');
             if (!grid) return;
-            
+
             grid.innerHTML = '';
-            
+
             jobsData.forEach(job => {
                 const card = document.createElement('div');
                 card.className = 'job-card';
@@ -1385,16 +1507,16 @@
         function viewResource(id) {
             const resource = knowledgeData.find(r => r.id === id);
             if (!resource) return;
-            
+
             document.getElementById('modal-title').textContent = resource.title;
             document.getElementById('modal-type').className = `type-${resource.type}`;
             document.getElementById('modal-type').textContent = resource.type.toUpperCase();
             document.getElementById('modal-price').textContent = resource.type === 'paid' ? `$${resource.price}` : 'FREE';
             document.getElementById('modal-description').textContent = resource.description;
-            
+
             const tagsContainer = document.getElementById('modal-tags');
             tagsContainer.innerHTML = resource.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-            
+
             document.getElementById('resource-modal').style.display = 'flex';
         }
 
@@ -1406,12 +1528,12 @@
             const price = type === 'paid' ? document.getElementById('resourcePrice').value : 0;
             const github = document.getElementById('githubRepo').value;
             const tags = document.getElementById('resourceTags').value.split(',').map(tag => tag.trim());
-            
+
             if (!title || !description) {
                 alert('Please fill in all required fields');
                 return;
             }
-            
+
             // Create new resource
             const newResource = {
                 id: knowledgeData.length + 1,
@@ -1425,34 +1547,34 @@
                 price: parseInt(price),
                 github
             };
-            
+
             knowledgeData.unshift(newResource);
-            
+
             // Show success message with animation
             const submitBtn = document.querySelector('#share-panel .btn-primary');
             const originalHTML = submitBtn.innerHTML;
-            
+
             submitBtn.innerHTML = '<i class="fas fa-check"></i> Published!';
             submitBtn.style.background = 'var(--success)';
-            
+
             setTimeout(() => {
                 submitBtn.innerHTML = originalHTML;
                 submitBtn.style.background = '';
-                
+
                 // Reset form
                 document.getElementById('resourceTitle').value = '';
                 document.getElementById('resourceDesc').value = '';
                 document.getElementById('resourcePrice').value = '';
                 document.getElementById('githubRepo').value = '';
                 document.getElementById('resourceTags').value = '';
-                
+
                 // Show success modal
                 alert('Resource published successfully! It is now live for the community.');
-                
+
                 // Reload resources
                 loadKnowledgeResources();
                 showPanel('explore');
-                
+
             }, 1500);
         }
 
@@ -1461,7 +1583,7 @@
             const modal = document.getElementById('resource-modal');
             const title = document.getElementById('modal-title').textContent;
             const type = document.getElementById('modal-type').textContent;
-            
+
             if (type === 'PAID') {
                 alert(`Premium Resource: "${title}"\n\nThis is a premium resource. Proceed to payment to access.`);
             } else {
@@ -1476,7 +1598,7 @@
         function registerEvent(eventId) {
             const event = eventsData.find(e => e.id === eventId);
             if (!event) return;
-            
+
             if (event.price !== 'Free') {
                 alert(`Registration for "${event.title}"\n\nPrice: ${event.price}\n\nProceed to payment to complete registration.`);
             } else {
@@ -1488,7 +1610,7 @@
         function applyJob(jobId) {
             const job = jobsData.find(j => j.id === jobId);
             if (!job) return;
-            
+
             alert(`Applying for: ${job.title} @ ${job.company}\n\nRedirecting to application form...`);
             setTimeout(() => {
                 // In real app, this would open application form
@@ -1508,11 +1630,11 @@
             // Add hover effects to cards
             const cards = document.querySelectorAll('.knowledge-card, .event-card, .job-card');
             cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
+                card.addEventListener('mouseenter', function () {
                     this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 });
             });
-            
+
             // Animate stats
             const stats = document.querySelectorAll('.stat-value');
             stats.forEach(stat => {
@@ -1532,7 +1654,7 @@
         }
 
         // Close modal when clicking outside
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modals = document.querySelectorAll('.modal');
             modals.forEach(modal => {
                 if (event.target === modal) {
@@ -1542,11 +1664,12 @@
         }
 
         // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeModal();
             }
         });
     </script>
 </body>
+
 </html>
