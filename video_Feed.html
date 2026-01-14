@@ -1,5 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Campus Circle </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                Campus Circle
+            </a>
+            <ul class="nav-menu">
+                <!-- <li class="nav-item"><a href="#home" class="nav-link">Home</a></li> -->
+                <li class="nav-item"><a href="#newsfeed" class="nav-link">Newsfeed</a></li>
+                <li class="nav-item"><a href="#marketplace" class="nav-link">Marketplace</a></li>
+                <li class="nav-item"><a href="battle_filed.html" class="nav-link">Battle</a></li>
+                <li class="nav-item"><a href="video_Feed.html" class="nav-link">Video</a></li>
+                <li class="nav-item"><a href="Practice_filed.html" class="nav-link">Practice</a></li>
+                <li class="nav-item"><a href="knowladge.html" class="nav-link">Knowledge</a></li>
+                <li class="nav-item"><a href="AI_Filed.html" class="nav-link">AI</a></li>
+                <li class="nav-item"><a href="#myProfile" class="nav-link">My Profile</a></li>
+                <li class="nav-item"><a href="#login" class="nav-link login btn">Student Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+</body>
+<br><br>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -355,25 +395,35 @@ font-size: 0.8rem;
 padding: 15px;
 }
 .video-title {
-font-size: 1.2rem;
-font-weight: 700;
-line-height: 1.3;
-margin-bottom: 8px;
-display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
-overflow: hidden;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    word-break: break-word; /* optional, ensures long words break */
 }
+
 .video-description {
-opacity: 0.9;
-line-height: 1.4;
-margin-bottom: 15px;
-font-size: 0.95rem;
-display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
-overflow: hidden;
+    opacity: 0.9;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    word-break: break-word; /* ensures long words break properly */
 }
+
 .video-author {
 display: flex;
 align-items: center;
@@ -542,6 +592,7 @@ height: 300px;
 </style>
 </head>
 <body>
+    
 <!-- Open Video Feed Button -->
 <button onclick="openVideoNewsfeed()" class="open-video-btn">
 <i class="fas fa-play-circle"></i>
