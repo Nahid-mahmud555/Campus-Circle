@@ -1,24 +1,2072 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Campus Circle </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font awesome/6.4.0/css/all.min.css">
-</head>
+    <title>Campus Circle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary: #7C3AED;
+            --primary-light: #A78BFA;
+            --primary-dark: #5B21B6;
+            --secondary: #F472B6;
+            --accent: #06B6D4;
+            --accent2: #10B981;
+            --bg: #0A0A0F;
+            --bg2: #111118;
+            --surface: rgba(255,255,255,0.04);
+            --surface2: rgba(255,255,255,0.08);
+            --glass: rgba(124,58,237,0.08);
+            --border: rgba(255,255,255,0.08);
+            --border2: rgba(124,58,237,0.3);
+            --text: #F1F0FF;
+            --text2: #A09BBF;
+            --text3: #6B6880;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --glow: 0 0 30px rgba(124,58,237,0.3);
+            --glow2: 0 0 60px rgba(124,58,237,0.15);
+            --radius: 16px;
+            --radius2: 24px;
+        }
 
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Ambient background orbs */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg2); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+
+        .nav-logo {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo i {
+            color: var(--primary-light);
+            font-size: 1.2rem;
+            filter: drop-shadow(0 0 8px var(--primary));
+        }
+
+        .nav-logo span { color: var(--primary-light); }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text2);
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 8px 14px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: var(--surface2);
+        }
+
+        .nav-link.active {
+            color: var(--primary-light);
+            background: rgba(124,58,237,0.12);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
+            color: white !important;
+            padding: 9px 20px !important;
+            border-radius: 50px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(124,58,237,0.35);
+            transition: all 0.3s ease !important;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(124,58,237,0.5) !important;
+            background: rgba(0,0,0,0) !important;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
+        }
+
+        .bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text2);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active .bar:nth-child(2) { opacity: 0; }
+        .hamburger.active .bar:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+        /* ===== HOME SECTION ===== */
+        .home-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(ellipse, rgba(124,58,237,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            opacity: 0;
+            animation: float-particle linear infinite;
+        }
+
+        @keyframes float-particle {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.3; }
+            100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto;
+            animation: hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes hero-enter {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(124,58,237,0.12);
+            border: 1px solid rgba(124,58,237,0.3);
+            color: var(--primary-light);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: hero-enter 0.8s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .hero-badge i { font-size: 0.7rem; animation: pulse 2s ease infinite; }
+
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+        .hero-content h1 {
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            animation: hero-enter 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text2);
+            max-width: 560px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            animation: hero-enter 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: hero-enter 0.8s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(124,58,237,0.55);
+        }
+
+        .btn.secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border2);
+        }
+
+        .btn.secondary:hover {
+            background: var(--surface2);
+            transform: translateY(-3px);
+        }
+
+        /* Why Campus Circle — Numbered List */
+        .why-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 2.5rem;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: hero-enter 0.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+            text-align: left;
+        }
+
+        .why-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.25s ease;
+        }
+
+        .why-point:last-child { border-bottom: none; }
+
+        .why-point:hover .why-num {
+            color: var(--primary-light);
+        }
+
+        .why-num {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 900;
+            color: var(--text3);
+            letter-spacing: 1px;
+            min-width: 24px;
+            margin-top: 3px;
+            transition: color 0.25s;
+        }
+
+        .why-text h4 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+            line-height: 1.4;
+        }
+
+        .why-text p {
+            font-size: 0.8rem;
+            color: var(--text3);
+            line-height: 1.5;
+            margin: 0;
+            max-width: none;
+        }
+
+        /* ===== SECTION BASE ===== */
+        section {
+            padding: 100px 0 60px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ===== GLASS CARD ===== */
+        .glass-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(124,58,237,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), var(--glow2);
+        }
+
+        /* ===== LOGIN SECTION ===== */
+        .login-section { background: transparent; }
+
+        .login-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius2);
+            padding: 3rem;
+            max-width: 520px;
+            margin: 0 auto;
+            backdrop-filter: blur(30px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            animation: card-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes card-enter {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-header .icon-ring {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(124,58,237,0.4);
+            animation: icon-glow 3s ease infinite;
+        }
+
+        @keyframes icon-glow {
+            0%,100% { box-shadow: 0 8px 25px rgba(124,58,237,0.4); }
+            50% { box-shadow: 0 8px 40px rgba(124,58,237,0.7); }
+        }
+
+        .login-header h2 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.5px;
+        }
+
+        .login-header p { color: var(--text2); font-size: 0.9rem; }
+
+        /* ===== FORMS ===== */
+        .form-group { margin-bottom: 1.4rem; }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text2);
+            letter-spacing: 0.3px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.25s ease;
+        }
+
+        input::placeholder, textarea::placeholder { color: var(--text3); }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(124,58,237,0.07);
+            box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+        }
+
+        select option { background: #1a1a2e; color: var(--text); }
+
+        small { display: block; margin-top: 0.4rem; color: var(--text3); font-size: 0.78rem; }
+
+        /* File Upload */
+        .file-upload { position: relative; }
+        .file-upload input[type="file"] { position: absolute; opacity: 0; pointer-events: none; }
+
+        .file-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px dashed rgba(124,58,237,0.4);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            justify-content: center;
+            color: var(--text2);
+            font-size: 0.9rem;
+        }
+
+        .file-label:hover {
+            border-color: var(--primary-light);
+            background: rgba(124,58,237,0.08);
+            color: var(--primary-light);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(124,58,237,0.35);
+            letter-spacing: 0.3px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124,58,237,0.5);
+        }
+
+        .submit-btn:active { transform: translateY(0); }
+
+        /* AI Note */
+        .ai-note {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(6,182,212,0.08);
+            border: 1px solid rgba(6,182,212,0.2);
+            padding: 10px 16px;
+            border-radius: var(--radius);
+            margin-top: 1rem;
+            color: var(--accent);
+            font-size: 0.85rem;
+        }
+
+        /* Login Features */
+        .login-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-tip {
+            text-align: center;
+            padding: 2rem 1.2rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius2);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .feature-tip:hover {
+            border-color: rgba(124,58,237,0.3);
+            transform: translateY(-5px);
+            background: rgba(124,58,237,0.05);
+        }
+
+        .feature-tip .tip-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(167,139,250,0.1));
+            border: 1px solid rgba(124,58,237,0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.4rem;
+            color: var(--primary-light);
+        }
+
+        .feature-tip h4 { font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700; }
+        .feature-tip p { color: var(--text3); font-size: 0.85rem; }
+
+        /* ===== PROFILE SECTION ===== */
+        .profile-section { background: transparent; }
+
+        .profile-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius2);
+            padding: 3rem;
+            max-width: 820px;
+            margin: 0 auto;
+            backdrop-filter: blur(30px);
+        }
+
+        .profile-header { text-align: center; margin-bottom: 2.5rem; }
+
+        .avatar-preview {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 1.2rem;
+            position: relative;
+        }
+
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 25px rgba(124,58,237,0.4);
+        }
+
+        .avatar-preview::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(124,58,237,0.2);
+            animation: rotate-ring 8s linear infinite;
+        }
+
+        @keyframes rotate-ring {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Type Options */
+        .type-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+
+        .type-option input { display: none; }
+
+        .option-card {
+            padding: 1.4rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .option-card:hover {
+            border-color: rgba(124,58,237,0.4);
+            transform: translateY(-3px);
+            background: rgba(124,58,237,0.05);
+        }
+
+        .type-option input:checked + .option-card {
+            border-color: var(--primary);
+            background: rgba(124,58,237,0.12);
+            box-shadow: 0 0 20px rgba(124,58,237,0.2);
+        }
+
+        .option-card i { font-size: 1.8rem; color: var(--primary-light); margin-bottom: 0.8rem; display: block; }
+        .option-card h5 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .option-card p { color: var(--text3); font-size: 0.8rem; }
+
+        /* Interest Tags */
+        .interest-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+
+        .interest-tag {
+            padding: 7px 15px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.85rem;
+            color: var(--text2);
+            font-weight: 500;
+        }
+
+        .interest-tag:hover { border-color: var(--primary-light); color: var(--primary-light); }
+
+        .interest-tag.selected {
+            background: rgba(124,58,237,0.15);
+            border-color: var(--primary);
+            color: var(--primary-light);
+        }
+
+        /* AI Suggestions */
+        .ai-suggestions {
+            background: rgba(6,182,212,0.05);
+            border: 1px solid rgba(6,182,212,0.15);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+        }
+
+        .ai-suggestions h4 { color: var(--accent); font-size: 0.95rem; margin-bottom: 1rem; }
+
+        .suggestion-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(6,182,212,0.1);
+        }
+
+        .suggestion-card i { color: var(--accent); font-size: 1.1rem; }
+        .suggestion-card p { color: var(--text2); font-size: 0.88rem; }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            font-family: 'Nunito', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: -1px;
+        }
+
+        /* ===== MARKETPLACE ===== */
+        .marketplace-section { background: transparent; }
+
+        .marketplace-filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+        .filter-btn {
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.85rem;
+            color: var(--text2);
+            font-weight: 500;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: rgba(124,58,237,0.15);
+            color: var(--primary-light);
+            border-color: var(--primary);
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 240px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text3);
+            font-size: 0.9rem;
+        }
+
+        .search-box input { padding-left: 42px; border-radius: 50px; }
+
+        .ai-chat-btn {
+            background: linear-gradient(135deg, var(--accent), #0891B2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .ai-chat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(6,182,212,0.35);
+        }
+
+        /* Marketplace Grid */
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius2);
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(124,58,237,0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), var(--glow2);
+        }
+
+        .skill-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--secondary), #EC4899);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .skill-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .skill-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,15,0.9) 0%, transparent 60%);
+        }
+
+        .skill-content { padding: 1.4rem; }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .seller-info { display: flex; align-items: center; gap: 0.7rem; }
+        .seller-info img { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--primary); }
+        .seller-info h4 { font-size: 0.82rem; color: var(--text2); font-weight: 600; }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--warning);
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .fa-heart {
+            color: var(--text3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .fa-heart:hover, .fa-heart.active { color: var(--secondary); transform: scale(1.2); }
+
+        .skill-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.3px; }
+        .skill-card p { color: var(--text3); font-size: 0.82rem; margin-bottom: 1rem; line-height: 1.5; }
+
+        .skill-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .price { font-size: 1.2rem; font-weight: 800; color: var(--primary-light); font-family: 'Nunito', sans-serif; }
+        .sessions { color: var(--text3); font-size: 0.8rem; }
+
+        .skill-actions { display: flex; gap: 0.6rem; }
+
+        .book-btn {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .book-btn:hover { box-shadow: 0 6px 20px rgba(124,58,237,0.45); transform: translateY(-1px); }
+
+        .info-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text2);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-btn:hover { border-color: var(--primary); color: var(--primary-light); }
+
+        /* ===== ACCESS DENIED ===== */
+        .access-denied {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .access-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 3.5rem 2.5rem;
+            border-radius: var(--radius2);
+            text-align: center;
+            max-width: 420px;
+        }
+
+        .access-card i { font-size: 3.5rem; color: var(--primary); margin-bottom: 1.5rem; display: block; }
+        .access-card h3 { font-family: 'Nunito', sans-serif; margin-bottom: 0.8rem; font-size: 1.4rem; }
+        .access-card p { color: var(--text2); margin-bottom: 2rem; font-size: 0.9rem; }
+
+        /* ===== NEWSFEED ===== */
+        .newsfeed-section { background: transparent; }
+
+        .newsfeed-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .newsfeed-header h2 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsfeed-header p { color: var(--text2); font-size: 1rem; }
+
+        .newsfeed-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar */
+        .create-post-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 1.4rem;
+            border-radius: var(--radius2);
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .create-post-card:hover { border-color: rgba(124,58,237,0.2); }
+
+        .post-input {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-avatar { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--primary); }
+
+        .post-input input {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.04);
+            font-size: 0.88rem;
+        }
+
+        .post-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+
+        .post-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 9px 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.85rem;
+            color: var(--text2);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .post-action-btn:hover {
+            background: rgba(124,58,237,0.1);
+            color: var(--primary-light);
+            border-color: rgba(124,58,237,0.3);
+            transform: translateX(3px);
+        }
+
+        /* Quick Filters */
+        .quick-filters {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 1.4rem;
+            border-radius: var(--radius2);
+        }
+
+        .quick-filters h4 { margin-bottom: 1rem; font-size: 0.9rem; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        .filter-tags { display: flex; flex-direction: column; gap: 0.4rem; }
+
+        .filter-tag {
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.85rem;
+            text-align: center;
+            color: var(--text2);
+        }
+
+        .filter-tag.active, .filter-tag:hover {
+            background: rgba(124,58,237,0.1);
+            color: var(--primary-light);
+            border-color: rgba(124,58,237,0.3);
+        }
+
+        /* Main Feed */
+        .newsfeed-main { display: flex; flex-direction: column; gap: 1.5rem; }
+
+        .search-container { display: flex; gap: 1rem; align-items: center; }
+
+        .newsfeed-search { flex: 1; position: relative; }
+
+        .newsfeed-search input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.04);
+        }
+
+        .ai-help-btn {
+            background: linear-gradient(135deg, var(--accent), #0891B2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .ai-help-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(6,182,212,0.35); }
+
+        /* Posts */
+        .posts-container { display: flex; flex-direction: column; gap: 1.2rem; }
+
+        .post-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: var(--radius2);
+            transition: all 0.3s ease;
+            animation: card-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .post-card:hover {
+            border-color: rgba(124,58,237,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .post-avatar { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--primary); }
+        .post-user-info h4 { font-size: 0.95rem; font-weight: 700; margin: 0; }
+        .post-user-info .post-time { color: var(--text3); font-size: 0.78rem; margin: 0; }
+
+        .post-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-left: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .post-type.skill { background: rgba(124,58,237,0.15); color: var(--primary-light); border: 1px solid rgba(124,58,237,0.3); }
+        .post-type.help { background: rgba(244,114,182,0.12); color: var(--secondary); border: 1px solid rgba(244,114,182,0.3); }
+
+        .post-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.3px; }
+        .post-content p { color: var(--text2); font-size: 0.88rem; margin-bottom: 1rem; line-height: 1.6; }
+
+        .post-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            margin: 0.8rem 0;
+            border: 1px solid var(--border);
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .post-price { font-weight: 800; color: var(--primary-light); font-size: 1.05rem; font-family: 'Nunito', sans-serif; }
+        .post-category {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--text3);
+        }
+
+        .post-actions-footer {
+            display: flex;
+            gap: 0.5rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            color: var(--text3);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .post-action:hover { background: rgba(124,58,237,0.08); color: var(--primary-light); border-color: rgba(124,58,237,0.2); }
+        .post-action.active { color: var(--secondary); border-color: rgba(244,114,182,0.3); }
+
+        /* ===== PROFILE PAGE ===== */
+        .profile-page-section { background: transparent; }
+
+        .profile-header-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: var(--radius2);
+            margin-bottom: 2rem;
+        }
+
+        .profile-info { display: flex; align-items: center; gap: 2rem; }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 25px rgba(124,58,237,0.3);
+        }
+
+        .profile-details h2 { font-family: 'Nunito', sans-serif; font-size: 1.5rem; margin-bottom: 0.4rem; font-weight: 800; }
+        .profile-details p { color: var(--text2); margin-bottom: 1rem; font-size: 0.9rem; }
+
+        .profile-stats { display: flex; gap: 2.5rem; }
+
+        .stat { text-align: center; }
+        .stat strong {
+            display: block;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            margin-bottom: 0.2rem;
+        }
+        .stat span { font-size: 0.78rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .profile-posts {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: var(--radius2);
+        }
+
+        .profile-posts h4 { font-size: 1rem; margin-bottom: 1.5rem; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
+
+        .user-posts-container { display: flex; flex-direction: column; gap: 1rem; }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text3);
+        }
+
+        .empty-state i { font-size: 3rem; color: var(--border); margin-bottom: 1rem; display: block; }
+        .empty-state h5 { margin-bottom: 0.5rem; color: var(--text2); font-size: 1rem; }
+        .empty-state p { font-size: 0.88rem; }
+
+        /* ===== UPLOAD SECTION ===== */
+        .upload-section { background: transparent; }
+
+        .upload-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius2);
+            padding: 3rem;
+            max-width: 820px;
+            margin: 0 auto;
+            backdrop-filter: blur(30px);
+        }
+
+        .upload-header { text-align: center; margin-bottom: 2.5rem; }
+        .upload-header h2 { font-family: 'Nunito', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+        .upload-header p { color: var(--text2); font-size: 0.9rem; }
+
+        /* Department Selection */
+        .department-selection { margin-top: 0.5rem; }
+        .department-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.6rem; }
+
+        .department-option {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.85rem;
+            color: var(--text2);
+        }
+
+        .department-option:hover { border-color: rgba(124,58,237,0.3); color: var(--text); }
+        .department-option input[type="checkbox"] { width: auto; accent-color: var(--primary); }
+
+        .checkmark { display: none; }
+
+        /* Image Upload */
+        .image-upload-container { display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem; }
+
+        .image-preview {
+            width: 120px;
+            height: 90px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text3);
+            font-size: 0.78rem;
+            gap: 5px;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .image-preview i { font-size: 1.4rem; }
+
+        .file-input { display: none; }
+
+        .file-upload-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(124,58,237,0.1);
+            border: 1px solid rgba(124,58,237,0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.88rem;
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .file-upload-btn:hover { background: rgba(124,58,237,0.2); }
+
+        /* Commission Preview */
+        .commission-preview {
+            background: rgba(16,185,129,0.05);
+            border: 1px solid rgba(16,185,129,0.15);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+        }
+
+        .commission-preview h4 { color: var(--accent2); font-size: 0.9rem; margin-bottom: 1rem; }
+        .commission-details { margin-top: 0.5rem; }
+
+        .commission-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+            color: var(--text2);
+        }
+
+        .commission-row:last-child { border-bottom: none; }
+
+        .commission-row.total {
+            font-weight: 700;
+            color: var(--accent2);
+            font-size: 1rem;
+        }
+
+        .commission-message { color: var(--text3); font-size: 0.8rem; margin-top: 0.5rem; }
+
+        /* AI Feedback */
+        .ai-feedback {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            color: var(--accent);
+            font-size: 0.82rem;
+        }
+
+        /* ===== AI CHATBOT ===== */
+        .ai-chatbot-section {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+
+        .chatbot-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius2);
+            width: 100%;
+            max-width: 420px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6), var(--glow);
+            animation: card-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .chatbot-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            border-radius: var(--radius2) var(--radius2) 0 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .chatbot-avatar {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .chatbot-header h4 { font-weight: 700; font-size: 0.95rem; }
+        .chatbot-header p { font-size: 0.78rem; opacity: 0.7; }
+
+        .close-chatbot {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: auto;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .close-chatbot:hover { background: rgba(255,255,255,0.25); }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message { display: flex; max-width: 85%; }
+
+        .message-content {
+            padding: 0.9rem 1.1rem;
+            border-radius: 16px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .user-message { align-self: flex-end; }
+        .user-message .message-content {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-message { align-self: flex-start; }
+        .ai-message .message-content {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            gap: 0.5rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.06);
+            font-size: 0.88rem;
+        }
+
+        #sendMessage {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        #sendMessage:hover { transform: scale(1.1); box-shadow: 0 5px 15px rgba(124,58,237,0.45); }
+
+        .quick-questions {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0 1rem 1rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-question {
+            background: rgba(124,58,237,0.1);
+            border: 1px solid rgba(124,58,237,0.2);
+            color: var(--primary-light);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .quick-question:hover { background: rgba(124,58,237,0.2); }
+
+        /* ===== MODAL ===== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius2);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: card-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-header h3 { font-family: 'Nunito', sans-serif; font-size: 1.2rem; font-weight: 800; }
+
+        .close-modal {
+            background: rgba(255,255,255,0.06);
+            border: none;
+            color: var(--text2);
+            font-size: 1rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .close-modal:hover { color: var(--text); background: rgba(255,255,255,0.12); }
+
+        .modal-body { padding: 1.5rem; }
+
+        /* ===== GUEST STYLES ===== */
+        .guest-notice {
+            background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(167,139,250,0.08));
+            border: 1px solid rgba(124,58,237,0.2);
+            color: var(--text);
+            padding: 14px 20px;
+            border-radius: var(--radius);
+            margin: 0 auto 2rem;
+            max-width: 700px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+        }
+
+        .guest-notice i { color: var(--warning); }
+
+        .guest-notice a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 4px 12px;
+            background: rgba(124,58,237,0.15);
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+
+        .guest-notice a:hover { background: rgba(124,58,237,0.3); }
+
+        /* ===== UTILITY ===== */
+        .hidden { display: none !important; }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+
+        .fa-heart.active { color: var(--secondary) !important; }
+        .nav-link.active { color: var(--primary-light); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 68px;
+                flex-direction: column;
+                background: rgba(10,10,15,0.97);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s ease;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+                padding: 2rem 0;
+                gap: 0.5rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-menu.active { left: 0; }
+
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-stats { gap: 2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .marketplace-filters { flex-direction: column; align-items: stretch; }
+            .search-box { min-width: auto; }
+            .login-card, .profile-card, .upload-card { padding: 2rem 1.5rem; }
+            .type-options { grid-template-columns: 1fr; }
+            .chatbot-card { height: 500px; }
+
+            .newsfeed-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .newsfeed-sidebar { order: 2; }
+            .newsfeed-main { order: 1; }
+            .search-container { flex-direction: column; }
+            .ai-help-btn { width: 100%; justify-content: center; }
+            .profile-info { flex-direction: column; text-align: center; }
+            .profile-stats { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .login-features { grid-template-columns: 1fr; }
+            .marketplace-grid { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 280px; text-align: center; justify-content: center; }
+            .post-actions { grid-template-columns: 1fr; }
+        }
+
+        /* =============================================
+           CINEMATIC INTRO LOADER
+        ============================================= */
+        #introLoader {
+            position: fixed;
+            inset: 0;
+            background: #05050a;
+            z-index: 99999;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        #introCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #introScene {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scene {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hidden-scene { display: none; }
+
+        #skipBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.5);
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+        #skipBtn:hover { color: white; background: rgba(255,255,255,0.12); }
+
+        #loaderProgress {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.06);
+        }
+        #loaderBar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--accent));
+            transition: width linear;
+        }
+
+        .loader-out {
+            animation: lo-fade 0.7s ease forwards !important;
+        }
+        @keyframes lo-fade { to { opacity: 0; transform: scale(1.03); pointer-events: none; } }
+
+        /* SCENE 1 */
+        .hook-line {
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            font-weight: 800;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+            opacity: 0;
+        }
+        .s1-l1 { animation: fade-up 0.7s 0.4s ease forwards; }
+        .s1-l2 { animation: fade-up 0.7s 1.5s ease forwards; color: var(--text2); font-size: clamp(0.9rem,2.5vw,1.2rem); font-weight: 600; margin-top: 0.8rem; }
+
+        /* SCENE 2 */
+        .cc-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .cc-left, .cc-right {
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(5rem, 18vw, 10rem);
+            font-weight: 900;
+            line-height: 1;
+            opacity: 0;
+        }
+        .cc-left {
+            color: var(--primary-light);
+            text-shadow: 0 0 40px rgba(124,58,237,0.8);
+            transform: translateX(-120px);
+            animation: cc-slide-r 0.5s 0.2s cubic-bezier(0.34,1.2,0.64,1) forwards;
+        }
+        .cc-right {
+            color: var(--accent);
+            text-shadow: 0 0 40px rgba(6,182,212,0.8);
+            transform: translateX(120px);
+            animation: cc-slide-l 0.5s 0.2s cubic-bezier(0.34,1.2,0.64,1) forwards;
+        }
+        @keyframes cc-slide-r { to { opacity:1; transform: translateX(-12px); } }
+        @keyframes cc-slide-l { to { opacity:1; transform: translateX(12px); } }
+
+        .explosion {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0);
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-light);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .explosion.boom { animation: expl 0.6s ease-out forwards; }
+        @keyframes expl {
+            0%  { transform: translate(-50%,-50%) scale(0); opacity: 0.9; }
+            100%{ transform: translate(-50%,-50%) scale(4); opacity: 0; }
+        }
+
+        .scene2-sub { font-family: 'Nunito', sans-serif; opacity: 0; line-height: 1.5; }
+        .s2-t1 { font-size: clamp(0.9rem,2.5vw,1.15rem); color: var(--text2); animation: fade-up 0.6s 1.4s ease forwards; }
+        .s2-t2 { font-size: clamp(1rem,3vw,1.4rem); font-weight: 800; color: var(--text); animation: fade-up 0.6s 2.2s ease forwards; margin-top: 0.5rem; }
+        .s2-t2 strong { color: var(--primary-light); }
+
+        /* SCENE 3 */
+        .scene3-intro {
+            font-family: 'Nunito', sans-serif;
+            font-size: clamp(1.2rem,4vw,2rem);
+            font-weight: 900;
+            opacity: 0;
+            animation: fade-up 0.6s 0.2s ease forwards;
+            margin-bottom: 0.5rem;
+        }
+        .scene3-intro strong { color: var(--primary-light); }
+        .scene3-sub {
+            font-size: clamp(0.8rem,2vw,1rem);
+            color: var(--text2);
+            opacity: 0;
+            animation: fade-up 0.5s 0.8s ease forwards;
+            margin-bottom: 2rem;
+        }
+        .feat-icons { display: flex; gap: 2.5rem; justify-content: center; margin-bottom: 1.5rem; }
+        .feat-icon { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; opacity: 0; transform: translateY(20px) scale(0.8); }
+        .s3-i1 { animation: fi-pop 0.5s 1.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+        .s3-i2 { animation: fi-pop 0.5s 1.9s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+        .s3-i3 { animation: fi-pop 0.5s 2.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+        @keyframes fi-pop { to { opacity:1; transform: translateY(0) scale(1); } }
+        .fi-circle {
+            width: 72px; height: 72px;
+            background: rgba(124,58,237,0.12);
+            border: 1px solid rgba(124,58,237,0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 0 20px rgba(124,58,237,0.2);
+        }
+        .feat-icon span { font-size: 0.75rem; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .scene3-detail { font-family: 'Nunito', sans-serif; font-size: clamp(0.9rem,2.5vw,1.1rem); font-weight: 800; color: var(--accent); opacity: 0; animation: fade-up 0.5s 3.0s ease forwards; }
+
+        /* SCENE 4 */
+        .map-title { font-family: 'Nunito', sans-serif; font-size: clamp(1rem,3vw,1.4rem); font-weight: 800; opacity: 0; animation: fade-up 0.6s 0.3s ease forwards; margin-bottom: 1.5rem; line-height: 1.5; }
+        .map-title strong { color: var(--primary-light); }
+        .bd-map-wrap { position: relative; width: 200px; height: 220px; margin: 0 auto; opacity: 0; animation: fade-up 0.6s 0.8s ease forwards; }
+        .bd-map { width: 100%; height: 100%; }
+        #bdPath { stroke-dasharray: 800; stroke-dashoffset: 800; animation: draw-path 2s 0.9s ease forwards; fill: rgba(124,58,237,0.06); }
+        @keyframes draw-path { to { stroke-dashoffset: 0; } }
+        .hk-dot { position: absolute; width: 10px; height: 10px; background: var(--primary-light); border-radius: 50%; transform: translate(-50%,-50%) scale(0); box-shadow: 0 0 10px var(--primary-light); }
+        .hk-dot span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 0.6rem; color: var(--primary-light); white-space: nowrap; font-weight: 700; }
+        #hd1 { animation: dot-pop 0.3s 1.2s ease forwards; }
+        #hd2 { animation: dot-pop 0.3s 1.6s ease forwards; }
+        #hd3 { animation: dot-pop 0.3s 2.0s ease forwards; }
+        #hd4 { animation: dot-pop 0.3s 2.4s ease forwards; }
+        #hd5 { animation: dot-pop 0.3s 2.8s ease forwards; }
+        @keyframes dot-pop { to { transform: translate(-50%,-50%) scale(1); } }
+        .hk-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .hkl { stroke: rgba(124,58,237,0.3); stroke-width: 0.8; stroke-dasharray: 60; stroke-dashoffset: 60; }
+        .hkl:nth-child(1) { animation: draw-line 0.4s 1.8s ease forwards; }
+        .hkl:nth-child(2) { animation: draw-line 0.4s 2.2s ease forwards; }
+        .hkl:nth-child(3) { animation: draw-line 0.4s 2.6s ease forwards; }
+        .hkl:nth-child(4) { animation: draw-line 0.4s 3.0s ease forwards; }
+        @keyframes draw-line { to { stroke-dashoffset: 0; } }
+        .map-sub { font-size: clamp(0.78rem,2vw,0.9rem); color: var(--text2); opacity: 0; animation: fade-up 0.5s 3.2s ease forwards; margin-top: 1.2rem; }
+
+        /* SCENE 5 */
+        .outro-logo { display: flex; align-items: center; gap: 12px; opacity: 0; transform: translateY(40px) scale(0.7); animation: logo-rise 0.8s 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards; margin-bottom: 1.5rem; }
+        .outro-logo i { font-size: 2.5rem; color: var(--primary-light); filter: drop-shadow(0 0 15px var(--primary)); }
+        .outro-logo span { font-family: 'Nunito', sans-serif; font-size: clamp(1.8rem,5vw,2.8rem); font-weight: 900; color: var(--text); letter-spacing: -1px; }
+        .outro-logo em { font-style: normal; color: var(--primary-light); }
+        @keyframes logo-rise { to { opacity:1; transform: translateY(0) scale(1); } }
+        .outro-tagline { display: flex; gap: 1rem; margin-bottom: 1rem; }
+        .ot { font-family: 'Nunito', sans-serif; font-size: clamp(1rem,3vw,1.5rem); font-weight: 900; opacity: 0; }
+        .s5-w1 { animation: fade-up 0.4s 1.1s ease forwards; color: var(--primary-light); }
+        .s5-w2 { animation: fade-up 0.4s 1.5s ease forwards; color: var(--accent); }
+        .s5-w3 { animation: fade-up 0.4s 1.9s ease forwards; color: var(--secondary); }
+        .outro-cta { font-size: clamp(0.85rem,2vw,1rem); color: var(--text2); opacity: 0; animation: fade-up 0.5s 2.4s ease forwards; margin-bottom: 2rem; }
+        .outro-btn { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; padding: 14px 36px; border-radius: 50px; font-size: 1rem; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; opacity: 0; transform: translateY(15px); animation: fade-up 0.5s 2.9s ease forwards; box-shadow: 0 8px 30px rgba(124,58,237,0.5); transition: transform 0.2s, box-shadow 0.2s; }
+        .outro-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(124,58,237,0.6); }
+
+        /* Shared */
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== WHY SECTION ===== */
+        .why-section {
+            margin-top: 3.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: hero-enter 0.8s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .why-label {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text3);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .why-list { display: flex; flex-direction: column; gap: 0; text-align: left; }
+        .why-point { display: flex; align-items: flex-start; gap: 1.2rem; padding: 0.95rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.25s ease; }
+        .why-point:last-child { border-bottom: none; }
+        .why-point:hover .why-num { color: var(--primary-light); }
+        .why-point:hover .why-text h4 { color: var(--primary-light); }
+        .why-num { font-family: 'Nunito', sans-serif; font-size: 0.7rem; font-weight: 900; color: var(--text3); letter-spacing: 1px; min-width: 22px; margin-top: 3px; transition: color 0.25s; }
+        .why-text h4 { font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 800; color: var(--text); margin-bottom: 0.2rem; line-height: 1.4; transition: color 0.25s; }
+        .why-text p { font-size: 0.78rem; color: var(--text3); line-height: 1.5; margin: 0; }
+    </style>
+</head>
 <body>
+
+    <!-- ===== CINEMATIC INTRO ===== -->
+    <div id="introLoader">
+        <canvas id="introCanvas"></canvas>
+
+        <!-- Scene container -->
+        <div id="introScene">
+
+            <!-- SCENE 1: The Hook [0-5s] -->
+            <div class="scene" id="scene1">
+                <div class="scene1-text">
+                    <p class="hook-line s1-l1">Tired of the same old academic routine?</p>
+                    <p class="hook-line s1-l2">Feeling stuck between textbooks<br>and real-world skills?</p>
+                </div>
+            </div>
+
+            <!-- SCENE 2: CC Collision [5-10s] -->
+            <div class="scene hidden-scene" id="scene2">
+                <div class="cc-wrap">
+                    <span class="cc-left">C</span>
+                    <span class="cc-right">C</span>
+                </div>
+                <div class="explosion" id="explosion"></div>
+                <p class="scene2-sub s2-t1">It's time to break the circle.</p>
+                <p class="scene2-sub s2-t2">Welcome to the evolution of<br><strong>Varendra University.</strong></p>
+            </div>
+
+            <!-- SCENE 3: Core Features [10-20s] -->
+            <div class="scene hidden-scene" id="scene3">
+                <p class="scene3-intro s3-t0">Introducing <strong>Campus Circle</strong></p>
+                <p class="scene3-sub s3-tsub">A secure, AI-powered ecosystem built exclusively for you.</p>
+                <div class="feat-icons">
+                    <div class="feat-icon s3-i1">
+                        <div class="fi-circle">🛡️</div>
+                        <span>Verify Identity</span>
+                    </div>
+                    <div class="feat-icon s3-i2">
+                        <div class="fi-circle">🎭</div>
+                        <span>Protect Privacy</span>
+                    </div>
+                    <div class="feat-icon s3-i3">
+                        <div class="fi-circle">🤖</div>
+                        <span>AI Powered</span>
+                    </div>
+                </div>
+                <p class="scene3-detail s3-td">Share your expertise. Anonymously.</p>
+            </div>
+
+            <!-- SCENE 4: Bangladesh Map [20-25s] -->
+            <div class="scene hidden-scene" id="scene4">
+                <p class="map-title s4-t1">Every Hackathon in Bangladesh.<br><strong>Never miss a chance to grow.</strong></p>
+                <div class="bd-map-wrap">
+                    <svg class="bd-map" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="bdPath" d="M80,10 L100,8 L120,15 L135,25 L145,40 L150,58 L145,75 L155,90 L158,110 L150,130 L140,148 L125,165 L110,178 L95,190 L82,200 L70,195 L58,185 L50,170 L42,155 L38,138 L35,120 L38,100 L32,82 L35,65 L42,50 L52,35 L65,20 Z" stroke="rgba(124,58,237,0.4)" stroke-width="1.5" fill="rgba(124,58,237,0.06)"/>
+                    </svg>
+                    <!-- Hackathon dots -->
+                    <div class="hk-dot" id="hd1" style="left:52%;top:22%"><span>BUET</span></div>
+                    <div class="hk-dot" id="hd2" style="left:65%;top:38%"><span>DU</span></div>
+                    <div class="hk-dot" id="hd3" style="left:40%;top:55%"><span>VU</span></div>
+                    <div class="hk-dot" id="hd4" style="left:58%;top:68%"><span>CUET</span></div>
+                    <div class="hk-dot" id="hd5" style="left:45%;top:78%"><span>KUET</span></div>
+                    <!-- Pulse lines between dots -->
+                    <svg class="hk-lines" viewBox="0 0 200 220">
+                        <line class="hkl" x1="104" y1="48" x2="130" y2="84" />
+                        <line class="hkl" x1="80" y1="121" x2="104" y2="48" />
+                        <line class="hkl" x1="116" y1="150" x2="130" y2="84" />
+                        <line class="hkl" x1="90" y1="172" x2="116" y2="150" />
+                    </svg>
+                </div>
+                <p class="map-sub s4-t2">From campus chatrooms to nationwide opportunities.</p>
+            </div>
+
+            <!-- SCENE 5: Outro [25-30s] -->
+            <div class="scene hidden-scene" id="scene5">
+                <div class="outro-logo" id="outroLogo">
+                    <i class="fas fa-seedling"></i>
+                    <span>Campus<em>Circle</em></span>
+                </div>
+                <div class="outro-tagline">
+                    <span class="ot s5-w1">Learn.</span>
+                    <span class="ot s5-w2">Earn.</span>
+                    <span class="ot s5-w3">Connect.</span>
+                </div>
+                <p class="outro-cta s5-cta">Join the circle today.</p>
+                <button class="outro-btn s5-btn" onclick="dismissLoader()">Get Started →</button>
+            </div>
+
+        </div>
+
+        <!-- Skip button -->
+        <button id="skipBtn" onclick="dismissLoader()">Skip ↗</button>
+
+        <!-- Progress bar -->
+        <div id="loaderProgress"><div id="loaderBar"></div></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">
                 <i class="fas fa-seedling"></i>
-                Campus Circle
+                Campus<span>Circle</span>
             </a>
             <ul class="nav-menu">
-                <!-- <li class="nav-item"><a href="#home" class="nav-link">Home</a></li> -->
                 <li class="nav-item"><a href="#newsfeed" class="nav-link">Newsfeed</a></li>
                 <li class="nav-item"><a href="#marketplace" class="nav-link">Marketplace</a></li>
                 <li class="nav-item"><a href="battle_filed.html" class="nav-link">Battle</a></li>
@@ -27,7 +2075,7 @@
                 <li class="nav-item"><a href="knowladge.html" class="nav-link">Knowledge</a></li>
                 <li class="nav-item"><a href="AI_Filed.html" class="nav-link">AI</a></li>
                 <li class="nav-item"><a href="#myProfile" class="nav-link">My Profile</a></li>
-                <li class="nav-item"><a href="#login" class="nav-link login btn">Student Login</a></li>
+                <li class="nav-item"><a href="#login" class="nav-link login-btn">Student Login</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -36,35 +2084,82 @@
             </div>
         </div>
     </nav>
+
     <!-- Home Section -->
     <section id="home" class="home-section">
+        <!-- Floating particles -->
+        <div class="particles" id="particles"></div>
+
         <div class="container">
             <div class="hero-content">
-                <h1>Welcome to <span class="highlight">Campus Circle</span></h1>
-                <p>“A safe, verified space for varsity students to share skills,
-                    learn, and grow together.”</p>
+                <div class="hero-badge">
+                    <i class="fas fa-circle"></i>
+                    Varendra University — VU Students Only
+                </div>
+                <h1>Welcome to<br><span class="highlight">Campus Circle</span></h1>
+                <p>"A safe, verified space for varsity students to share skills, learn, and grow together."</p>
                 <div class="hero-buttons">
-                    <a href="#login" class="btn primary">Get Started</a>
+                    <a href="#login" class="btn primary">
+                        <i class="fas fa-rocket"></i>
+                        Get Started
+                    </a>
+                    <a href="#newsfeed" class="btn secondary">
+                        <i class="fas fa-compass"></i>
+                        Explore Feed
+                    </a>
+                </div>
+                <div class="why-section">
+                    <p class="why-label">Why Campus Circle?</p>
+                    <div class="why-list">
+                        <div class="why-point">
+                            <span class="why-num">01</span>
+                            <div class="why-text">
+                                <h4>🛡️ VU Exclusive & Verified</h4>
+                                <p>100% secure campus network, strictly validated by Student ID.</p>
+                            </div>
+                        </div>
+                        <div class="why-point">
+                            <span class="why-num">02</span>
+                            <div class="why-text">
+                                <h4>🎭 Anonymous Identity</h4>
+                                <p>Share skills or drop urgent notices without revealing your name.</p>
+                            </div>
+                        </div>
+                        <div class="why-point">
+                            <span class="why-num">03</span>
+                            <div class="why-text">
+                                <h4>🏆 National Hackathon Tracker</h4>
+                                <p>Real-time updates on every innovation challenge & hackathon across BD.</p>
+                            </div>
+                        </div>
+                        <div class="why-point">
+                            <span class="why-num">04</span>
+                            <div class="why-text">
+                                <h4>💬 Smart Section-Wise Chat</h4>
+                                <p>From global campus vibes to your specific classroom—connect instantly.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Step 1: Login Section -->
+
+    <!-- Login Section -->
     <section id="login" class="login-section">
         <div class="container">
             <div class="login-card">
                 <div class="login-header">
-                    <i class="fas fa-graduation-cap"></i>
+                    <div class="icon-ring">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
                     <h2>Student Verification</h2>
                     <p>Enter your Varendra University details</p>
                 </div>
                 <form class="login-form" id="verificationForm">
                     <div class="form-group">
                         <label for="studentId">Student ID *</label>
-                        <input type="text" id="studentId" placeholder="2021-XXX
-XXX" required>
-                        required>
-                        Engineering</option>
+                        <input type="text" id="studentId" placeholder="2021-XXX-XXX" required>
                         <small>Format: Year-Department-Roll</small>
                     </div>
                     <div class="form-row">
@@ -81,75 +2176,76 @@ XXX" required>
                         </div>
                         <div class="form-group">
                             <label for="section">Section *</label>
-                            <input type="text" id="section" placeholder="A" </div>
+                            <input type="text" id="section" placeholder="A">
                         </div>
-                        <div class="form-group">
-                            <label for="department">Department *</label>
-                            <select id="department" required>
-                                <option value="">Select Department</option>
-                                <option value="cse">Computer Science &
-                                <option value="bba">Business Administration</option>
-                                <option value="english">English</option>
-                                <option value="law">Law & Justice</option>
-                                <option value="economics">Economics</option>
-                                <option value="other">Other</option>
-                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department *</label>
+                        <select id="department" required>
+                            <option value="">Select Department</option>
+                            <option value="cse">Computer Science & Engineering</option>
+                            <option value="bba">Business Administration</option>
+                            <option value="english">English</option>
+                            <option value="law">Law & Justice</option>
+                            <option value="economics">Economics</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="idProof">Student ID Proof (Optional)</label>
+                        <div class="file-upload">
+                            <input type="file" id="idProof" accept="image/*,.pdf">
+                            <label for="idProof" class="file-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                Upload ID Card Photo
+                            </label>
                         </div>
-                        <div class="form-group">
-                            <label for="idProof">Student ID Proof (Optional)</label>
-                            <div class="file-upload">
-                                <input type="file" id="idProof" accept="image/*,.pdf">
-                                <label for="idProof" class="file-label">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    Upload ID Card Photo
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-lock"></i>
-                            Verify & Continue
-                        </button>
-                        <div class="ai-note">
-                            <i class="fas fa-robot"></i>
-                            <span>AI will verify your student status
-                                automatically</span>
-                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-lock"></i>
+                        Verify & Continue
+                    </button>
+                    <div class="ai-note">
+                        <i class="fas fa-robot"></i>
+                        <span>AI will verify your student status automatically</span>
+                    </div>
                 </form>
             </div>
+
             <div class="login-features">
                 <div class="feature-tip">
-                    <i class="fas fa-shield-alt"></i>
+                    <div class="tip-icon"><i class="fas fa-shield-alt"></i></div>
                     <h4>Verified & Safe</h4>
                     <p>Only VU students can join</p>
                 </div>
                 <div class="feature-tip">
-                    <i class="fas fa-user-secret"></i>
+                    <div class="tip-icon"><i class="fas fa-user-secret"></i></div>
                     <h4>Anonymous Profiles</h4>
                     <p>Your privacy protected</p>
                 </div>
                 <div class="feature-tip">
-                    <i class="fas fa-rocket"></i>
+                    <div class="tip-icon"><i class="fas fa-rocket"></i></div>
                     <h4>AI Powered</h4>
                     <p>Smart recommendations</p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Step 2: Profile Setup -->
+
+    <!-- Profile Setup -->
     <section id="profileSetup" class="profile-section hidden">
         <div class="container">
             <div class="profile-card">
                 <div class="profile-header">
                     <div class="avatar-preview">
-                        <img id="avatarPreview" src="https://api.dicebear.com/7.x/avataaars/svg?
-seed=campus&backgroundColor=8b5fbf" alt="Avatar">
+                        <img id="avatarPreview" src="https://api.dicebear.com/7.x/avataaars/svg?seed=campus&backgroundColor=8b5fbf" alt="Avatar">
                     </div>
-                    <h2>Create Your Profile</h2>
-                    <p>Tell us about yourself to get personalized experience</p>
+                    <h2 style="font-family:'Nunito',sans-serif;font-size:1.7rem;font-weight:800;margin-bottom:0.4rem;">Create Your Profile</h2>
+                    <p style="color:var(--text2)">Tell us about yourself to get personalized experience</p>
                 </div>
                 <form class="profile-form" id="profileForm">
                     <div class="profile-type-selection">
-                        <h4>I want to primarily:</h4>
+                        <h4 style="margin-bottom:0.8rem;color:var(--text2);font-size:0.9rem;text-transform:uppercase;letter-spacing:1px;">I want to primarily:</h4>
                         <div class="type-options">
                             <label class="type-option">
                                 <input type="radio" name="profileType" value="seller" required>
@@ -178,39 +2274,35 @@ seed=campus&backgroundColor=8b5fbf" alt="Avatar">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="interests">Your Interests (Select
-                            multiple)</label>
+                        <label>Your Interests (Select multiple)</label>
                         <div class="interest-tags">
-                            <span class="interest-tag" data interest="programming">Programming</span>
-                            <span class="interest-tag" data interest="design">Graphic Design</span>
-                            <span class="interest-tag" data interest="business">Business</span>
-                            <span class="interest-tag" data interest="writing">Content Writing</span>
-                            <span class="interest-tag" data interest="music">Music</span>
-                            <span class="interest-tag" data interest="sports">Sports</span>
-                            <span class="interest-tag" data interest="language">Language</span>
-                            <span class="interest-tag" data interest="math">Mathematics</span>
-                            <span class="interest-tag" data interest="science">Science</span>
-                            <span class="interest-tag" data interest="arts">Arts</span>
+                            <span class="interest-tag" data-interest="programming">Programming</span>
+                            <span class="interest-tag" data-interest="design">Graphic Design</span>
+                            <span class="interest-tag" data-interest="business">Business</span>
+                            <span class="interest-tag" data-interest="writing">Content Writing</span>
+                            <span class="interest-tag" data-interest="music">Music</span>
+                            <span class="interest-tag" data-interest="sports">Sports</span>
+                            <span class="interest-tag" data-interest="language">Language</span>
+                            <span class="interest-tag" data-interest="math">Mathematics</span>
+                            <span class="interest-tag" data-interest="science">Science</span>
+                            <span class="interest-tag" data-interest="arts">Arts</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="skills">Your Skills (Optional)</label>
-                        <input type="text" id="skills" placeholder="e.g., 
-Python, Graphic Design, Content Writing...">
+                        <input type="text" id="skills" placeholder="e.g., Python, Graphic Design, Content Writing...">
                         <small>Separate skills with commas</small>
                     </div>
                     <div class="form-group">
                         <label for="bio">About Me</label>
-                        <textarea id="bio" placeholder="Tell us about yourself, 
-your goals, or what you're looking for..." rows="4"></textarea>
+                        <textarea id="bio" placeholder="Tell us about yourself, your goals, or what you're looking for..." rows="4"></textarea>
                     </div>
                     <div class="ai-suggestions">
                         <h4><i class="fas fa-lightbulb"></i> AI Suggestions</h4>
                         <div class="suggestion-cards">
                             <div class="suggestion-card">
                                 <i class="fas fa-code"></i>
-                                <p>Based on your department, we suggest focusing
-                                    on programming skills and academic tutoring</p>
+                                <p>Based on your department, we suggest focusing on programming skills and academic tutoring</p>
                             </div>
                         </div>
                     </div>
@@ -222,23 +2314,21 @@ your goals, or what you're looking for..." rows="4"></textarea>
             </div>
         </div>
     </section>
+
     <!-- Newsfeed Section -->
     <section id="newsfeed" class="newsfeed-section hidden">
         <div class="container">
             <div class="newsfeed-header">
-                <h2><i class="fas fa-newspaper"></i> Campus Newsfeed</h2>
+                <h2><i class="fas fa-newspaper" style="color:var(--primary-light);margin-right:10px;"></i>Campus Newsfeed</h2>
                 <p>Discover skills, connect with peers, and stay updated</p>
             </div>
             <div class="newsfeed-content">
                 <!-- Left Sidebar -->
                 <div class="newsfeed-sidebar">
-                    <!-- Create Post Card -->
                     <div class="create-post-card">
                         <div class="post-input">
-                            <img id="currentUserAvatar" src="https://api.dicebear.com/7.x/avataaars/svg?
-seed=campus&backgroundColor=8b5fbf" alt="User" class="user-avatar">
-                            <input type="text" placeholder="Share your skills or 
-ask for help..." id="postInput">
+                            <img id="currentUserAvatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=campus&backgroundColor=8b5fbf" alt="User" class="user-avatar">
+                            <input type="text" placeholder="Share your skills or ask for help..." id="postInput">
                         </div>
                         <div class="post-actions">
                             <button type="button" class="post-action-btn" onclick="showUploadSection()">
@@ -252,90 +2342,78 @@ ask for help..." id="postInput">
                             </button>
                         </div>
                     </div>
-                    <!-- Quick Filters -->
                     <div class="quick-filters">
                         <h4>Quick Filters</h4>
                         <div class="filter-tags">
-                            <span class="filter-tag active" data filter="all">All Posts</span>
-                            <span class="filter-tag" data filter="skill">Skills</span>
-                            <span class="filter-tag" data-filter="help">Help
-                                Posts</span>
-                            <span class="filter-tag" data filter="tech">Technology</span>
-                            <span class="filter-tag" data filter="academic">Academic</span>
+                            <span class="filter-tag active" data-filter="all">All Posts</span>
+                            <span class="filter-tag" data-filter="skill">Skills</span>
+                            <span class="filter-tag" data-filter="help">Help Posts</span>
+                            <span class="filter-tag" data-filter="tech">Technology</span>
+                            <span class="filter-tag" data-filter="academic">Academic</span>
                         </div>
                     </div>
                 </div>
+
                 <!-- Main Feed -->
                 <div class="newsfeed-main">
-                    <!-- Search Bar -->
                     <div class="search-container">
                         <div class="search-box newsfeed-search">
                             <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Search posts, 
-skills, or help..." id="newsfeedSearch">
+                            <input type="text" placeholder="Search posts, skills, or help..." id="newsfeedSearch">
                         </div>
                         <button type="button" class="ai-help-btn" onclick="showChatbot()">
                             <i class="fas fa-robot"></i> AI Assistant
                         </button>
                     </div>
-                    <!-- Posts Container -->
-                    <div class="posts-container" id="postsContainer">
-                        <!-- Posts will be loaded here by JavaScript -->
-                    </div>
+                    <div class="posts-container" id="postsContainer"></div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Marketplace Section -->
     <section id="marketplace" class="marketplace-section hidden">
         <div class="container">
             <h2 class="section-title">Skills Marketplace</h2>
-            <!-- Marketplace Access Control -->
             <div id="marketplaceAccess" class="access-denied">
                 <div class="access-card">
                     <i class="fas fa-lock"></i>
                     <h3>Access Required</h3>
-                    <p>Please complete student verification to access the
-                        marketplace</p>
+                    <p>Please complete student verification to access the marketplace</p>
                     <button type="button" class="btn primary" onclick="showLoginSection()">Verify Now</button>
                 </div>
             </div>
-            <!-- Marketplace Content -->
             <div id="marketplaceContent" class="hidden">
                 <div class="marketplace-filters">
                     <div class="filter-group">
-                        <button type="button" class="filter-btn active" data filter="all">All Skills</button>
-                        <button type="button" class="filter-btn" data filter="tech">Technology</button>
-                        <button type="button" class="filter-btn" data filter="design">Design</button>
-                        <button type="button" class="filter-btn" data filter="business">Business</button>
-                        <button type="button" class="filter-btn" data filter="academic">Academic</button>
+                        <button type="button" class="filter-btn active" data-filter="all">All Skills</button>
+                        <button type="button" class="filter-btn" data-filter="tech">Technology</button>
+                        <button type="button" class="filter-btn" data-filter="design">Design</button>
+                        <button type="button" class="filter-btn" data-filter="business">Business</button>
+                        <button type="button" class="filter-btn" data-filter="academic">Academic</button>
                     </div>
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Search 
-skills...">
+                        <input type="text" id="searchInput" placeholder="Search skills...">
                     </div>
                     <button type="button" class="ai-chat-btn" onclick="showChatbot()">
                         <i class="fas fa-robot"></i> AI Help
                     </button>
                 </div>
-                <div class="marketplace-grid" id="marketplaceGrid">
-                    <!-- Courses will be loaded here by JavaScript -->
-                </div>
+                <div class="marketplace-grid" id="marketplaceGrid"></div>
             </div>
         </div>
     </section>
+
     <!-- My Profile Section -->
     <section id="myProfile" class="profile-page-section hidden">
         <div class="container">
             <div class="profile-header-card">
                 <div class="profile-info">
-                    <img id="profileUserAvatar" src="https://api.dicebear.com/7.x/avataaars/svg?
-seed=campus&backgroundColor=8b5fbf" alt="User" class="profile-avatar">
+                    <img id="profileUserAvatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=campus&backgroundColor=8b5fbf" alt="User" class="profile-avatar">
                     <div class="profile-details">
                         <h2 id="profileUsername">VU_Student</h2>
-                        <p id="profileDepartment">Computer Science & Engineering
-                            • Batch 2022</p>
+                        <p id="profileDepartment">Computer Science & Engineering • Batch 2022</p>
                         <div class="profile-stats">
                             <div class="stat">
                                 <strong id="postsCount">0</strong>
@@ -354,40 +2432,36 @@ seed=campus&backgroundColor=8b5fbf" alt="User" class="profile-avatar">
                 </div>
             </div>
             <div class="profile-content">
-                <!-- User's Posts -->
                 <div class="profile-posts">
                     <h4>My Activity</h4>
                     <div class="user-posts-container" id="userPostsContainer">
                         <div class="empty-state">
                             <i class="fas fa-edit"></i>
                             <h5>No posts yet</h5>
-                            <p>Share your first skill or ask for help to get
-                                started!</p>
+                            <p>Share your first skill or ask for help to get started!</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Upload Section -->
     <section id="uploadSection" class="upload-section hidden">
         <div class="container">
             <div class="upload-card">
                 <div class="upload-header">
                     <h2>Sell Your Skills</h2>
-                    <p>Create a listing to offer your expertise to other
-                        students</p>
+                    <p>Create a listing to offer your expertise to other students</p>
                 </div>
                 <form class="upload-form" id="uploadForm">
                     <div class="form-group">
                         <label for="itemTitle">Skill Title *</label>
-                        <input type="text" id="itemTitle" placeholder="e.g., Web 
-Development Bootcamp" required>
+                        <input type="text" id="itemTitle" placeholder="e.g., Web Development Bootcamp" required>
                     </div>
                     <div class="form-group">
                         <label for="itemDescription">Description *</label>
-                        <textarea id="itemDescription" placeholder="Describe 
-what you'll teach, requirements, and what students will learn..." rows="4" required></textarea>
+                        <textarea id="itemDescription" placeholder="Describe what you'll teach, requirements, and what students will learn..." rows="4" required></textarea>
                         <div class="ai-feedback">
                             <i class="fas fa-robot"></i>
                             <span>AI is checking description clarity...</span>
@@ -415,59 +2489,48 @@ what you'll teach, requirements, and what students will learn..." rows="4" requi
                             <option value="creative">Creative</option>
                         </select>
                     </div>
-                    <!-- Department Selection - NEW FEATURE -->
                     <div class="form-group">
-                        <label for="targetDepartments">Available For Departments
-                            *</label>
+                        <label>Available For Departments *</label>
                         <div class="department-selection">
                             <div class="department-options">
                                 <label class="department-option">
                                     <input type="checkbox" name="targetDepartments" value="all" checked>
-                                    <span class="checkmark"></span>
                                     All Departments
                                 </label>
                                 <label class="department-option">
                                     <input type="checkbox" name="targetDepartments" value="cse">
-                                    <span class="checkmark"></span>
                                     Computer Science & Engineering
                                 </label>
                                 <label class="department-option">
                                     <input type="checkbox" name="targetDepartments" value="bba">
-                                    <span class="checkmark"></span>
                                     Business Administration
                                 </label>
                                 <label class="department-option">
                                     <input type="checkbox" name="targetDepartments" value="english">
-                                    <span class="checkmark"></span>
                                     English
                                 </label>
                                 <label class="department-option">
                                     <input type="checkbox" name="targetDepartments" value="law">
-                                    <span class="checkmark"></span>
                                     Law & Justice
                                 </label>
                                 <label class="department-option">
                                     <input type="checkbox" name="targetDepartments" value="economics">
-                                    <span class="checkmark"></span>
                                     Economics
                                 </label>
                                 <label class="department-option">
                                     <input type="checkbox" name="targetDepartments" value="other">
-                                    <span class="checkmark"></span>
                                     Other Departments
                                 </label>
                             </div>
                         </div>
-                        <small>Select which departments can see and book this
-                            skill</small>
+                        <small>Select which departments can see and book this skill</small>
                     </div>
-                    <!-- Image Upload Section -->
                     <div class="form-group">
-                        <label for="itemImage">Skill Image (Optional)</label>
+                        <label>Skill Image (Optional)</label>
                         <div class="image-upload-container">
                             <div class="image-preview" id="imagePreview">
                                 <i class="fas fa-image"></i>
-                                <span>Image Preview</span>
+                                <span>Preview</span>
                             </div>
                             <input type="file" id="itemImage" accept="image/*" class="file-input">
                             <label for="itemImage" class="file-upload-btn">
@@ -477,8 +2540,7 @@ what you'll teach, requirements, and what students will learn..." rows="4" requi
                         </div>
                     </div>
                     <div class="commission-preview">
-                        <h4><i class="fas fa-calculator"></i> Commission
-                            Preview</h4>
+                        <h4><i class="fas fa-calculator"></i> Commission Preview</h4>
                         <div class="commission-details">
                             <div class="commission-row">
                                 <span>Your Earnings:</span>
@@ -493,8 +2555,7 @@ what you'll teach, requirements, and what students will learn..." rows="4" requi
                                 <span id="totalAmount">0 ৳</span>
                             </div>
                         </div>
-                        deducted</p>
-                        <p class="commission-message">Platform fee: 15% will be
+                        <p class="commission-message">Platform fee: 15% will be deducted</p>
                     </div>
                     <button type="submit" class="submit-btn">
                         <i class="fas fa-upload"></i>
@@ -504,6 +2565,7 @@ what you'll teach, requirements, and what students will learn..." rows="4" requi
             </div>
         </div>
     </section>
+
     <!-- AI Chatbot -->
     <div id="aiChatbot" class="ai-chatbot-section hidden">
         <div class="chatbot-card">
@@ -522,29 +2584,24 @@ what you'll teach, requirements, and what students will learn..." rows="4" requi
             <div class="chat-messages" id="chatMessages">
                 <div class="message ai-message">
                     <div class="message-content">
-                        Hello! I'm your Campus AI Assistant. I can help you with
-                        buying/selling skills, marketplace guidance, campus information, and more. What
-                        would you like to know?
+                        Hello! I'm your Campus AI Assistant. I can help you with buying/selling skills, marketplace guidance, campus information, and more. What would you like to know?
                     </div>
                 </div>
             </div>
             <div class="quick-questions">
-                <button type="button" class="quick-question"
-                    onclick="askQuickQuestion('What skills are trending?')">Trending Skills</button>
-                <button type="button" class="quick-question" onclick="askQuickQuestion('How to sell my skills?')">Sell
-                    Skills</button>
-                <button type="button" class="quick-question" onclick="askQuickQuestion('Campus events?')">Campus
-                    Events</button>
+                <button type="button" class="quick-question" onclick="askQuickQuestion('What skills are trending?')">Trending Skills</button>
+                <button type="button" class="quick-question" onclick="askQuickQuestion('How to sell my skills?')">Sell Skills</button>
+                <button type="button" class="quick-question" onclick="askQuickQuestion('Campus events?')">Campus Events</button>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Ask me 
-anything...">
+                <input type="text" id="chatInput" placeholder="Ask me anything...">
                 <button type="button" id="sendMessage">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
         </div>
     </div>
+
     <!-- Help Post Modal -->
     <div id="helpModal" class="modal hidden">
         <div class="modal-content">
@@ -557,15 +2614,12 @@ anything...">
             <div class="modal-body">
                 <form id="helpPostForm">
                     <div class="form-group">
-                        <label for="helpTitle">What do you need help
-                            with?</label>
-                        <input type="text" id="helpTitle" placeholder="e.g., 
-Need help with Python assignment..." required>
+                        <label for="helpTitle">What do you need help with?</label>
+                        <input type="text" id="helpTitle" placeholder="e.g., Need help with Python assignment..." required>
                     </div>
                     <div class="form-group">
                         <label for="helpDescription">Description</label>
-                        <textarea id="helpDescription" placeholder="Describe 
-what you need help with..." rows="4" required></textarea>
+                        <textarea id="helpDescription" placeholder="Describe what you need help with..." rows="4" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="helpCategory">Category</label>
@@ -584,8 +2638,149 @@ what you need help with..." rows="4" required></textarea>
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
+    <script>
+        // Generate floating particles
+        (function() {
+            const container = document.getElementById('particles');
+            if (!container) return;
+            for (let i = 0; i < 20; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.width = p.style.height = (Math.random() * 4 + 2) + 'px';
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 10) + 's';
+                p.style.background = Math.random() > 0.5 ? 'var(--primary-light)' : 'var(--accent)';
+                container.appendChild(p);
+            }
+        })();
+
+        // ===== CINEMATIC INTRO CONTROLLER =====
+        (function() {
+            const loader = document.getElementById('introLoader');
+            const bar    = document.getElementById('loaderBar');
+            const canvas = document.getElementById('introCanvas');
+            const ctx    = canvas.getContext('2d');
+
+            // Scene durations in ms: [s1=5s, s2=5s, s3=10s, s4=5s, s5=5s]
+            const TOTAL    = 30000;
+            const SCENES   = [5000, 5000, 10000, 5000, 5000];
+            const sceneIds = ['scene1','scene2','scene3','scene4','scene5'];
+
+            let startTime  = null;
+            let dismissed  = false;
+
+            // Resize canvas
+            function resizeCanvas() {
+                canvas.width  = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Particle system for canvas
+            const particles = [];
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    r: Math.random() * 1.8 + 0.4,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    alpha: Math.random() * 0.5 + 0.1,
+                    color: Math.random() > 0.5 ? '124,58,237' : '6,182,212'
+                });
+            }
+
+            function drawParticles(progress) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.y > canvas.height) p.y = 0;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${p.color},${p.alpha})`;
+                    ctx.fill();
+                });
+            }
+
+            // Show a specific scene
+            let currentScene = 0;
+            function showScene(idx) {
+                sceneIds.forEach((id, i) => {
+                    const el = document.getElementById(id);
+                    if (i === idx) {
+                        el.classList.remove('hidden-scene');
+                        el.style.animation = 'none';
+                        void el.offsetWidth;
+                    } else {
+                        el.classList.add('hidden-scene');
+                    }
+                });
+                currentScene = idx;
+
+                // Scene 2 special: trigger explosion after CC collision
+                if (idx === 1) {
+                    setTimeout(() => {
+                        const expl = document.getElementById('explosion');
+                        if (expl) expl.classList.add('boom');
+                    }, 800);
+                }
+            }
+
+            // Animation loop
+            function loop(ts) {
+                if (dismissed) return;
+                if (!startTime) startTime = ts;
+                const elapsed  = ts - startTime;
+                const progress = Math.min(elapsed / TOTAL, 1);
+
+                // Update progress bar
+                bar.style.width = (progress * 100) + '%';
+
+                // Draw particles
+                drawParticles(progress);
+
+                // Scene switching
+                let accumulated = 0;
+                for (let i = 0; i < SCENES.length; i++) {
+                    accumulated += SCENES[i];
+                    if (elapsed < accumulated) {
+                        if (currentScene !== i) showScene(i);
+                        break;
+                    }
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(loop);
+                } else {
+                    // Show scene 5 (outro) at the end
+                    showScene(4);
+                    // Auto dismiss after outro plays
+                    setTimeout(dismissLoader, 5500);
+                }
+            }
+
+            requestAnimationFrame(loop);
+
+            // Skip
+            window.dismissLoader = function() {
+                if (dismissed) return;
+                dismissed = true;
+                loader.classList.add('loader-out');
+                setTimeout(() => { loader.style.display = 'none'; }, 700);
+            };
+
+            loader.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'BUTTON') return;
+            });
+        })();
+    </script>
 </body>
-
-
-</html
+</html>
