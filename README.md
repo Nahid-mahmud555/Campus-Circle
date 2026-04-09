@@ -1,6 +1,7 @@
 Project Overview :: 
 
-CampusSkill Hub is an exclusive, AI-powered skill-sharing platform designed specifically for Varendra University students. We bridge the gap between academic learning and practical skill development by creating a safe, verified, and anonymous ecosystem where students can teach, learn, and grow together.
+Campus Circle is a revolutionary AI-driven ecosystem designed to transform Bangladeshi universities into self-sustaining micro-digital economies. Starting with Varendra University as a pilot and scaling nationwide, it integrates institutional learning with secure skill-monetization and real-world problem-solving. Featuring AI-guided career roadmaps and verified anonymous marketplaces, it bridges the gap between academic theory and professional mastery while eliminating unemployment anxiety through a 'Guardian AI' that ensures no student is left behind . We bridge the gap between academic learning and practical skill development by creating a safe, verified, and anonymous ecosystem where students can teach, learn, and grow together.
+
 [ Demo Website Link ] : https://nahid-mahmud555.github.io/Campus-Circle/
 
     💡 Vision: To create Bangladesh's first university-specific skill-sharing economy powered by artificial intelligence.
@@ -35,10 +36,10 @@ CampusSkill Hub is an exclusive, AI-powered skill-sharing platform designed spec
 
 ### Desktop View – Campus Circle
 
-![Campus Circle Desktop View](Screenshot%202025-10-10%20at%2011-54-19%20Campus%20Circle.png)
+![Campus Circle Desktop View](Screenshot 2026-04-09 at 21-13-34 Campus Circle.png)
 
 ### Mobile View – Campus Circle
 
-![CampusSkill Hub Desktop View](photo_6289497954934524904_y.jpg)
+![CampusSkill Hub Desktop View](Screenshot 2026-04-09 at 21-13-34 Campus Circle.png)
 
 
