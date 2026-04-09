@@ -36,10 +36,10 @@ Campus Circle is a revolutionary AI-driven ecosystem designed to transform Bangl
 
 ### Desktop View – Campus Circle
 
-![Campus Circle Desktop View](Screenshot 2026-04-09 at 21-13-34 Campus Circle.png)
+![Campus Circle Desktop View](screenshot.png)
 
 ### Mobile View – Campus Circle
 
-![CampusSkill Hub Desktop View](Screenshot 2026-04-09 at 21-13-34 Campus Circle.png)
+![CampusSkill Hub Desktop View](screenshot1.png)
 
 
